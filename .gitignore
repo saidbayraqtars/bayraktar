@@ -1,0 +1,19 @@
+node_modules
+.next
+out
+.env*
+!.env.example
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# Local tooling and generated test artifacts
+.claude/
+test-results/
+playwright-report/
+playwright/.cache/
+coverage/
+*.log
+
+# AI devir notlari (sunucu/erisim bilgisi icerir)
+AI-DEVIR-NOTLARI.md
