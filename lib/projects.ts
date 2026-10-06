@@ -132,7 +132,7 @@ export const projects: Project[] = [
     stack: ['Electron', 'JavaScript', 'SQL Server'],
   },
   {
-    slug: 'galya-panel', name: 'Galya Panel', rank: 7, status: 'field', color: '#8e3b46', ink: '#ffffff',
+    slug: 'galya-panel', image: '/work/galya.jpg', name: 'Galya Panel', rank: 7, status: 'field', color: '#8e3b46', ink: '#ffffff',
     kind: { tr: 'Masaüstü · Stok ve maliyet', en: 'Desktop · Stock and cost' },
     pitch: { tr: 'İki ERP’nin stok, sayım ve maliyet verisini tek ekranda topluyor.', en: 'Brings stock, count and cost data from two ERPs onto one screen.' },
     summary: { tr: 'VegaWin ve Vega Şefim verilerini salt okunur birleştiren stok, maliyet, sayım ve e-fatura takip uygulaması. Dikkat isteyen kayıtlar tek panelde; ara sayım, reçete ve günlük satış raporları ayrı çalışma alanlarında.', en: 'A stock, cost, count and e-invoice monitor that reads VegaWin and Vega Şefim data without writing to it. Records that need attention sit in one panel, with separate workspaces for counts, recipes and daily sales reports.' },
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     stack: ['Electron', 'Node.js', 'SQL Server'],
   },
   {
-    slug: 'vega-ticket', name: 'Vega Ticket', rank: 8, status: 'field', color: '#3a6ea5', ink: '#ffffff', employer: true,
+    slug: 'vega-ticket', image: '/work/vega-ticket.jpg', name: 'Vega Ticket', rank: 8, status: 'field', color: '#3a6ea5', ink: '#ffffff', employer: true,
     kind: { tr: 'Masaüstü · Destek operasyonu', en: 'Desktop · Support operations' },
     pitch: { tr: 'Müşteri işlemleri, sözleşme süreleri ve servis kayıtları tek yerde.', en: 'Customer work, contract periods and service records in one place.' },
     summary: { tr: 'Destek ekibinin müşteriye yaptığı işlemleri, söylenen ücretleri ve sözleşme sürelerini ortak tuttuğu masaüstü uygulama. Vega müşteri verisini okuyor, kendi kayıtlarını ayrı veritabanında tutuyor; merkezi WhatsApp kuyruğu ve A5 servis fişi var.', en: 'A desktop application where the support team shares customer work records, quoted fees and contract periods. It reads Vega customer data, keeps its own records in a separate database, and has a central WhatsApp queue and A5 service slips.' },
@@ -157,7 +157,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/saidbayraqtars/vega-ticket-sistem-releases',
   },
   {
-    slug: 'seawatch', name: 'SeaWatch', rank: 9, status: 'ready', color: '#0e4f6e', ink: '#dff6ff',
+    slug: 'seawatch', image: '/work/seawatch.jpg', name: 'SeaWatch', rank: 9, status: 'ready', color: '#0e4f6e', ink: '#dff6ff',
     kind: { tr: 'SaaS · Denizcilik', en: 'SaaS · Maritime' },
     pitch: { tr: 'Gemi konumlarını bölgeye göre süzüp haritaya canlı aktaran takip sistemi.', en: 'Filters vessel positions by region and streams them to a live map.' },
     summary: { tr: 'AIS gemi konumlarını PostgreSQL/PostGIS’te bölgeye göre süzüp web ve mobil haritaya SSE ile gerçek zamanlı aktaran takip sistemi. Veri sağlayıcısı değiştirilebilir, abonelik bölge bazlı.', en: 'A tracking system that filters AIS vessel positions by region in PostgreSQL/PostGIS and streams them to web and mobile maps over SSE. Data providers are interchangeable and subscriptions are per region.' },
@@ -176,7 +176,7 @@ export const projects: Project[] = [
     highlights: [], stack: ['HTML', 'Cloudflare R2', 'Workers'],
   },
   {
-    slug: 'gunluk-kasa', name: 'Günlük Kasa', rank: 11, status: 'field', color: '#5c7a3a', ink: '#ffffff', employer: true,
+    slug: 'gunluk-kasa', image: '/work/gunluk-kasa.jpg', name: 'Günlük Kasa', rank: 11, status: 'field', color: '#5c7a3a', ink: '#ffffff', employer: true,
     kind: { tr: 'Masaüstü · Kasa yönetimi', en: 'Desktop · Cash management' },
     pitch: { tr: 'Günün kasasını ERP’den çıkarıyor, gün sonunda kapatıp imzalı rapor basıyor.', en: 'Builds the day’s cash summary from the ERP, then closes it with a signed report.' },
     summary: { tr: 'Vega veritabanından tek günün kasa özetini çıkaran masaüstü uygulama: devreden, giriş, çıkış, güncel bakiye ve yürüyen bakiyeli hareketler. Masraf, avans, satış faturası ve havale ekrandan Vega’ya yazılıyor; gün sonunda kasa sayılıp kapatılıyor.', en: 'A desktop application that builds a single day’s cash summary from the Vega database: carried over, in, out, current balance and a running ledger. Expenses, advances, sales invoices and transfers are written to Vega from the screen, and the till is counted and closed at the end of the day.' },
@@ -207,7 +207,7 @@ export const projects: Project[] = [
     stack: ['Electron', 'Express', 'SQL Server'],
   },
   {
-    slug: 'vega-panel', name: 'Vega Panel', rank: 14, status: 'live', color: '#24364b', ink: '#cfe3ff', employer: true,
+    slug: 'vega-panel', image: '/work/vega-panel.jpg', name: 'Vega Panel', rank: 14, status: 'live', color: '#24364b', ink: '#cfe3ff', employer: true,
     kind: { tr: 'Bulut · Lisans ve kontör', en: 'Cloud · Licences and credits' },
     pitch: { tr: 'Vega ürünlerinin lisanslarını ve yapay zekâ kontörlerini buluttan yönetiyor.', en: 'Manages licences and AI credits for Vega products from the cloud.' },
     summary: { tr: 'Vega masaüstü ürünlerinin lisanslarını üreten ve yapay zekâ kontörlerini yöneten bulut paneli. Kontör sunucusu, Vega WhatsApp’ın yapay zekâ çağrılarını karşılayıp müşteri başına kontör düşüyor; kimlik RSA imzalı lisansla doğrulanıyor.', en: 'A cloud panel that issues licences for Vega desktop products and manages AI credits. Its credit server answers Vega WhatsApp’s AI calls and deducts credits per customer, with identity verified by an RSA-signed licence.' },
@@ -247,7 +247,7 @@ export const projects: Project[] = [
     highlights: [], stack: ['Next.js', 'TypeScript'],
   },
   {
-    slug: 'reklam-otomasyon', name: 'Reklam Paneli', rank: 19, status: 'dev', color: '#e5487b', ink: '#ffffff',
+    slug: 'reklam-otomasyon', image: '/work/reklam.jpg', name: 'Reklam Paneli', rank: 19, status: 'dev', color: '#e5487b', ink: '#ffffff',
     kind: { tr: 'SaaS · Reklam yönetimi', en: 'SaaS · Ad management' },
     pitch: { tr: 'Google Ads ve Meta reklamlarını tek panelden, yapay zekâ desteğiyle yönetiyor.', en: 'Manages Google Ads and Meta campaigns from one panel, with AI help.' },
     summary: { tr: 'Google Ads ve Meta reklamlarını tek panelden yöneten, yapay zekâ destekli optimizasyon öneren ve Reels için otomatik video kreatifi üreten panel. Reklam API onayları bekleniyor.', en: 'A panel that manages Google Ads and Meta campaigns in one place, suggests AI-assisted optimisations and generates video creatives for Reels. Ad API approvals are pending.' },
