@@ -4,7 +4,7 @@ import { test } from '@playwright/test'
 test.skip(!process.env.SCREENS, 'set SCREENS=1 to capture')
 
 const scenes: [string, string, number][] = [
-  ['3-work', '#work', 0], ['4-stack', '.feature-stack', 2.2], ['5-pan', '.pan', 1],
+  ['3-work', '#work', 0], ['4-scenes', '.scenes', 2.2], ['5-pan', '.pan', 1],
   ['6-index', '.index', 0], ['7-stats', '.stats', 0], ['8-about', '#about', 0], ['9-contact', '#contact', 0],
 ]
 

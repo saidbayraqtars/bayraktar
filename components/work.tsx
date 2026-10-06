@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from 'motion/react'
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'motion/react'
 import { useSite } from '@/components/providers'
 import { Icon } from '@/components/icons'
 import { Kinetic } from '@/components/kinetic'
+import { Scene } from '@/components/scene'
 import { displayHost, projectHref, projects, type Project } from '@/lib/projects'
 import type { Copy, Lang } from '@/lib/content'
 
@@ -18,17 +19,17 @@ const brand = (project: Project) => ({ '--c': project.color, '--ci': project.ink
 const two = (rank: number) => String(rank).padStart(2, '0')
 
 /** Real screenshot when we have one, otherwise the name set as a poster in the project's colour. */
-function Media({ project, sizes, parallax }: { project: Project; sizes: string; parallax?: MotionValue<string> }) {
+function Media({ project, sizes }: { project: Project; sizes: string }) {
   return (
     <div className="media" style={brand(project)}>
       {project.image ? (
-        <motion.div className="media-shot" style={parallax ? { y: parallax } : undefined}>
+        <div className="media-shot">
           <Image src={project.image} alt="" fill sizes={sizes} className="media-img" />
-        </motion.div>
+        </div>
       ) : (
-        <motion.div className="media-poster" style={parallax ? { y: parallax } : undefined} aria-hidden="true">
+        <div className="media-poster" aria-hidden="true">
           <span data-text={project.name}>{project.name}</span>
-        </motion.div>
+        </div>
       )}
     </div>
   )
@@ -58,51 +59,20 @@ export function Work() {
         <h2 className="section-title"><Kinetic text={t.work.title} base={92} max={120} /></h2>
         <p className="work-lead">{t.work.lead}</p>
       </header>
-      <FeatureStack t={t} lang={lang} />
+      <FeatureScenes t={t} lang={lang} />
       <Pan t={t} lang={lang} />
       <IndexList t={t} lang={lang} />
     </section>
   )
 }
 
-/* Ranks 1-4: full cards that pin and pile up like layers. */
-function FeatureStack({ t, lang }: { t: Copy; lang: Lang }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
+/* Ranks 1-4: one pinned scroll scene each. */
+function FeatureScenes({ t, lang }: { t: Copy; lang: Lang }) {
   return (
-    <div ref={ref} className="feature-stack">
-      {featured.map((project, index) => (
-        <FeatureCard key={project.slug} project={project} index={index} progress={scrollYProgress} t={t} lang={lang} />
+    <div className="scenes">
+      {featured.map((project) => (
+        <Scene key={project.slug} project={project} t={t} lang={lang} link={<ProjectLink project={project} t={t} className="btn btn-solid" />} />
       ))}
-    </div>
-  )
-}
-
-function FeatureCard({ project, index, progress, t, lang }: { project: Project; index: number; progress: MotionValue<number>; t: Copy; lang: Lang }) {
-  const reduced = useReducedMotion()
-  const ref = useRef<HTMLDivElement>(null)
-  const total = featured.length
-  const scale = useTransform(progress, [index / total, 1], [1, 1 - (total - 1 - index) * 0.045])
-  const shade = useTransform(() => index === total - 1 ? 0 : 0.5 * Math.min(1, Math.max(0, (progress.get() - index / total) * total)))
-  const { scrollYProgress: own } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const parallax = useTransform(own, [0, 1], ['-8%', '8%'])
-  return (
-    <div ref={ref} className="feature-slot" style={{ '--i': index } as CSSProperties}>
-      <motion.article className="feature" style={reduced ? undefined : { scale }}>
-        <div className="feature-info">
-          <span className="feature-rank" style={brand(project)}>{two(project.rank)}</span>
-          <h3 className="feature-name">{project.name}</h3>
-          <Meta project={project} t={t} lang={lang} />
-          <p className="feature-pitch">{project.pitch[lang]}</p>
-          <ul className="chips">{project.stack.slice(0, 5).map((item) => <li key={item}>{item}</li>)}</ul>
-          <div className="feature-foot">
-            <ProjectLink project={project} t={t} className="btn btn-solid" />
-            {project.employer && <span className="feature-note">{t.work.employer}</span>}
-          </div>
-        </div>
-        <Media project={project} sizes="(max-width: 900px) 92vw, 52vw" parallax={reduced ? undefined : parallax} />
-        <motion.span className="feature-shade" style={{ opacity: shade }} aria-hidden="true" />
-      </motion.article>
     </div>
   )
 }
@@ -152,34 +122,24 @@ function Pan({ t, lang }: { t: Copy; lang: Lang }) {
   )
 }
 
-/* Ranks 11-19: a typographic index; on desktop a preview follows the pointer. */
+/* Ranks 11-19: a typographic index. */
 function IndexList({ t, lang }: { t: Copy; lang: Lang }) {
-  const [hover, setHover] = useState<Project | null>(null)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const px = useSpring(x, { stiffness: 260, damping: 26 })
-  const py = useSpring(y, { stiffness: 260, damping: 26 })
   return (
-    <div className="index" onPointerMove={(event) => { x.set(event.clientX); y.set(event.clientY) }} onPointerLeave={() => setHover(null)}>
+    <div className="index">
       <h3 className="index-title">{t.work.more}</h3>
       <ol className="index-list">
         {small.map((project, index) => (
           <motion.li key={project.slug} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, delay: (index % 3) * 0.06, ease: [0.16, 1, 0.3, 1] }}>
-            <IndexRow project={project} t={t} lang={lang} onEnter={() => setHover(project)} />
+            <IndexRow project={project} t={t} lang={lang} />
           </motion.li>
         ))}
       </ol>
-      <div className="preview-clip" aria-hidden="true">
-        <motion.div className="index-preview" style={{ x: px, y: py }} data-show={hover ? true : undefined}>
-          {hover && <Media project={hover} sizes="320px" />}
-        </motion.div>
-      </div>
     </div>
   )
 }
 
-function IndexRow({ project, t, lang, onEnter }: { project: Project; t: Copy; lang: Lang; onEnter: () => void }) {
+function IndexRow({ project, t, lang }: { project: Project; t: Copy; lang: Lang }) {
   const inner = <>
     <span className="row-rank">{two(project.rank)}</span>
     <span className="row-name" style={brand(project)}>{project.name}</span>
@@ -187,6 +147,6 @@ function IndexRow({ project, t, lang, onEnter }: { project: Project; t: Copy; la
     <span className="row-dest">{project.url ? displayHost(project.url) : t.work.view}<Icon name={project.url ? 'external' : 'back'} className={project.url ? undefined : 'flip'} /></span>
   </>
   return project.url
-    ? <a className="row" href={project.url} target="_blank" rel="noreferrer" onPointerEnter={onEnter}>{inner}</a>
-    : <Link className="row" href={projectHref(project)} onPointerEnter={onEnter}>{inner}</Link>
+    ? <a className="row" href={project.url} target="_blank" rel="noreferrer">{inner}</a>
+    : <Link className="row" href={projectHref(project)}>{inner}</Link>
 }

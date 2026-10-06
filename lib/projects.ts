@@ -19,6 +19,12 @@ export type Project = {
   repo?: string
   /** Real screenshot with demo data, under /public/work. */
   image?: string
+  /** Further screens of the same product; scroll scenes switch to them. */
+  shots?: string[]
+  /** Short facts that float around the window in the featured scroll scenes (ranks 1-4). */
+  stats?: Localized[]
+  /** Where the scene's pointer clicks, in % of the screenshot (x, y). */
+  target?: [number, number]
   /** Built while working at Expert Bilişim; the showcase page says so. */
   employer?: boolean
   /** Cartridge label colour and the text colour that sits on it. */
@@ -38,10 +44,16 @@ export const projects: Project[] = [
       { tr: 'Kullanıcının kendi kurduğu raporlar ve rol tabanlı yetkiler', en: 'User-built reports and role-based permissions' },
     ],
     stack: ['Next.js', 'TypeScript', 'Expo', 'PostgreSQL', 'Prisma', 'Electron'],
+    stats: [
+      { tr: '1.200+ otomatik test', en: '1,200+ automated tests' },
+      { tr: '3 uygulama, tek veri', en: '3 apps, one database' },
+      { tr: 'ERP köprüsü', en: 'ERP bridge' },
+    ],
+    target: [30, 56],
     repo: 'https://github.com/saidbayraqtars/b2b-order-system',
   },
   {
-    slug: 'okka', name: 'Okka ERP', rank: 2, status: 'dev', color: '#146b63', ink: '#ffffff',
+    slug: 'okka', image: '/work/okka-fatura.jpg', shots: ['/work/okka-uretim.jpg'], name: 'Okka ERP', rank: 2, status: 'dev', color: '#146b63', ink: '#ffffff',
     kind: { tr: 'ERP · Geliştirmede', en: 'ERP · In development' },
     pitch: { tr: 'Ön muhasebe, cari, stok, personel ve üretimi tek yerde toplayan yeni nesil ERP.', en: 'A new ERP bringing accounting, accounts, stock, staff and production together.' },
     summary: { tr: 'Ön muhasebe, cari, stok, personel, gider ve üretim modüllerini sıfırdan TypeScript ile kurduğum ERP. Belge onayı stok defterine yazıyor; her modül kendi tasarım sistemi bileşenleri ve uçtan uca testleriyle geliyor.', en: 'An ERP I am building from scratch in TypeScript, covering accounting, accounts, stock, staff, expenses and production. Approved documents post to the stock ledger, and every module ships with design-system components and end-to-end tests.' },
@@ -51,9 +63,15 @@ export const projects: Project[] = [
       { tr: 'Storybook tasarım sistemi ve Playwright testleri', en: 'A Storybook design system and Playwright tests' },
     ],
     stack: ['TypeScript', 'React', 'SQL Server', 'Storybook', 'Playwright'],
+    stats: [
+      { tr: '6 modül', en: '6 modules' },
+      { tr: 'Storybook tasarım sistemi', en: 'Storybook design system' },
+      { tr: 'Uçtan uca testler', en: 'End-to-end tests' },
+    ],
+    target: [10, 46],
   },
   {
-    slug: 'vega-whatsapp', name: 'Vega WhatsApp', rank: 3, status: 'field', color: '#1f9d55', ink: '#ffffff', employer: true,
+    slug: 'vega-whatsapp', image: '/work/vega-whatsapp.jpg', shots: ['/work/vega-whatsapp-2.jpg'], name: 'Vega WhatsApp', rank: 3, status: 'field', color: '#1f9d55', ink: '#ffffff', employer: true,
     kind: { tr: 'Masaüstü · Tahsilat otomasyonu', en: 'Desktop · Collections automation' },
     pitch: { tr: 'ERP carilerine WhatsApp’tan bakiye hatırlatma, ekstre ve belge gönderiyor.', en: 'Sends balance reminders, statements and documents to ERP accounts over WhatsApp.' },
     summary: { tr: 'Vega ERP carilerine WhatsApp üzerinden bakiye hatırlatma, ekstre, belge bildirimi, çek/senet vadesi ve e-fatura PDF’i gönderen masaüstü ürün. Yapay zekâ ile otomatik yanıt, çoklu hesap ve resmî Meta Cloud API modu var.', en: 'A desktop product that sends balance reminders, statements, document notices, cheque due dates and e-invoice PDFs to Vega ERP accounts over WhatsApp. It has AI auto-replies, multiple accounts and an official Meta Cloud API mode.' },
@@ -63,13 +81,31 @@ export const projects: Project[] = [
       { tr: 'Otomatik güncellenen kurulum paketi', en: 'An installer that updates itself' },
     ],
     stack: ['Node.js', 'Express', 'SQL Server', 'Baileys', 'Meta Cloud API'],
+    stats: [
+      { tr: 'Sahada 12 makinede', en: 'Running on 12 machines' },
+      { tr: 'Resmî Meta Cloud API', en: 'Official Meta Cloud API' },
+      { tr: 'Yapay zekâ ile yanıt', en: 'AI auto-replies' },
+    ],
+    target: [21, 24],
   },
   {
     slug: 'neva-qr', image: '/work/neva.png', name: 'Neva QR', rank: 4, status: 'live', color: '#2b2440', ink: '#f3cf6b', url: 'https://nevaqr.com',
     kind: { tr: 'SaaS · Dijital menü', en: 'SaaS · Digital menus' },
     pitch: { tr: 'Restoranlar için 40’tan fazla tasarımlı QR menü platformu. Canlıda.', en: 'A QR menu platform for restaurants with more than 40 designs. Live.' },
     summary: { tr: 'Restoranın kimliğini masaya taşıyan QR menü platformu.', en: 'A QR menu platform that brings a restaurant’s identity to the table.' },
-    highlights: [], stack: ['Laravel', 'PHP', 'Alpine.js', 'SQLite', 'Cloudflare'],
+    highlights: [
+      { tr: 'Her restorana kendi renkleri ve tasarımı', en: 'Each restaurant gets its own colours and design' },
+      { tr: 'Masadaki QR ile anında açılan menü', en: 'A menu that opens from the QR code on the table' },
+      { tr: 'Ürün ve fiyatlar panelden güncelleniyor', en: 'Products and prices are updated from the panel' },
+    ],
+    stack: ['Laravel', 'PHP', 'Alpine.js', 'SQLite', 'Cloudflare'],
+    shots: ['/work/neva-menu.png'],
+    stats: [
+      { tr: '40+ menü tasarımı', en: '40+ menu designs' },
+      { tr: 'Canlıda', en: 'Live' },
+      { tr: 'Cloudflare üzerinde', en: 'Runs on Cloudflare' },
+    ],
+    target: [62, 50],
   },
   {
     slug: 'arcteknik-suite', image: '/work/arcteknik.png', name: 'ArcTeknik ERP', rank: 5, status: 'ready', color: '#e0832b', ink: '#1f1206',
@@ -84,7 +120,7 @@ export const projects: Project[] = [
     stack: ['React', 'Electron', 'Express', 'SQL Server', 'SQLite'],
   },
   {
-    slug: 'hizli-belge', name: 'Hızlı Belge', rank: 6, status: 'field', color: '#f2c94c', ink: '#2a2105', employer: true,
+    slug: 'hizli-belge', image: '/work/hizli-belge.jpg', name: 'Hızlı Belge', rank: 6, status: 'field', color: '#f2c94c', ink: '#2a2105', employer: true,
     kind: { tr: 'Masaüstü · Toptan satış', en: 'Desktop · Wholesale' },
     pitch: { tr: 'Sebze-meyve toptancıları için klavyeyle hızlı belge girişi ve kasa takibi.', en: 'Fast keyboard document entry and crate tracking for produce wholesalers.' },
     summary: { tr: 'Sebze ve meyve toptancıları için belge girişi, dara hesabı, kasa depozitosu ve Vega ERP kaydı. Eski bir Access uygulamasının yerini aldı; bilgisayar deneyimi az olan kullanıcı için klavye odaklı tasarlandı.', en: 'Document entry, tare calculation, crate deposits and Vega ERP records for produce wholesalers. It replaced an old Access application and was designed keyboard-first for users with little computer experience.' },
@@ -133,7 +169,7 @@ export const projects: Project[] = [
     stack: ['React', 'Node.js', 'PostGIS', 'SSE', 'Expo'],
   },
   {
-    slug: 'yavuz-grup', name: 'Yavuz Grup', rank: 10, status: 'live', color: '#b9a48a', ink: '#2a2118', url: 'https://yavuzgrupinsaat.com.tr',
+    slug: 'yavuz-grup', image: '/work/yavuz.jpg', name: 'Yavuz Grup', rank: 10, status: 'live', color: '#b9a48a', ink: '#2a2118', url: 'https://yavuzgrupinsaat.com.tr',
     kind: { tr: 'Kurumsal web · Yapı', en: 'Company website · Construction' },
     pitch: { tr: 'Seramik ve yapı malzemeleri firması için vitrin sitesi ve yönetim paneli.', en: 'A showcase site and admin panel for a ceramics and building supplies company.' },
     summary: { tr: 'Seramik ve yapı malzemeleri firmasının vitrin sitesi.', en: 'Showcase site for a ceramics and building supplies company.' },
@@ -152,7 +188,7 @@ export const projects: Project[] = [
     stack: ['React', 'Electron', 'Express', 'SQL Server'],
   },
   {
-    slug: 'expert-bilisim', name: 'Expert Bilişim', rank: 12, status: 'live', color: '#d23c3c', ink: '#ffffff', url: 'https://expertbilisim.com.tr',
+    slug: 'expert-bilisim', image: '/work/expert.jpg', name: 'Expert Bilişim', rank: 12, status: 'live', color: '#d23c3c', ink: '#ffffff', url: 'https://www.expertbilisim.com.tr',
     kind: { tr: 'Kurumsal web · Yazılım', en: 'Company website · Software' },
     pitch: { tr: 'Vega Yazılım Samsun Bölge Temsilciliği’nin kurumsal sitesi.', en: 'The company website of Vega Yazılım’s Samsun regional office.' },
     summary: { tr: 'Vega Yazılım Samsun Bölge Temsilciliği’nin kurumsal sitesi.', en: 'Company website of Vega Yazılım’s Samsun regional office.' },
@@ -183,28 +219,28 @@ export const projects: Project[] = [
     stack: ['Cloudflare Workers', 'D1', 'TypeScript'],
   },
   {
-    slug: 'omay-metal', name: 'Ömay Metal', rank: 15, status: 'live', color: '#4a5560', ink: '#ffffff', url: 'https://omaymetalcit.com.tr',
+    slug: 'omay-metal', image: '/work/omay.jpg', name: 'Ömay Metal', rank: 15, status: 'live', color: '#4a5560', ink: '#ffffff', url: 'https://omaymetalcit.com.tr',
     kind: { tr: 'Kurumsal web · Çit sistemleri', en: 'Company website · Fencing' },
     pitch: { tr: 'Çit sistemleri firması için ürün sayfaları, keşif formu ve yönetim paneli.', en: 'Product pages, a site-visit form and an admin panel for a fencing company.' },
     summary: { tr: 'Çit sistemleri firmasının kurumsal sitesi.', en: 'Company website for a fencing company.' },
     highlights: [], stack: ['Next.js', 'Tailwind', 'Cloudflare'],
   },
   {
-    slug: 'teknoklinik-toner', name: 'TeknoKlinik', rank: 16, status: 'live', color: '#00897b', ink: '#ffffff', url: 'https://samsuntonerdolum.com.tr',
+    slug: 'teknoklinik-toner', image: '/work/teknoklinik.jpg', name: 'TeknoKlinik', rank: 16, status: 'live', color: '#00897b', ink: '#ffffff', url: 'https://samsuntonerdolum.com.tr',
     kind: { tr: 'Web · Toner dolum', en: 'Website · Toner refills' },
     pitch: { tr: 'Samsun’da toner dolum hizmeti için arama odaklı site.', en: 'A search-focused site for a toner refill service in Samsun.' },
     summary: { tr: 'Toner dolum hizmeti için SEO odaklı site.', en: 'SEO-focused site for a toner refill service.' },
     highlights: [], stack: ['React', 'Vercel'],
   },
   {
-    slug: 'nakliyat-55', name: 'Nakliyat 55', rank: 17, status: 'live', color: '#ef6c00', ink: '#1f0e00', url: 'https://nakliyat55.com.tr',
+    slug: 'nakliyat-55', image: '/work/nakliyat.jpg', name: 'Nakliyat 55', rank: 17, status: 'live', color: '#ef6c00', ink: '#1f0e00', url: 'https://nakliyat55.com.tr',
     kind: { tr: 'Web · Nakliyat', en: 'Website · Removals' },
     pitch: { tr: 'Nakliyat firması için reklam açılış sayfası ve yerel arama sitesi.', en: 'An ad landing page and local search site for a removals company.' },
     summary: { tr: 'Nakliyat firması için açılış sayfası.', en: 'Landing page for a removals company.' },
     highlights: [], stack: ['HTML', 'Node.js'],
   },
   {
-    slug: 'damrenur-gunel', name: 'Damrenur Günel', rank: 18, status: 'live', color: '#b5838d', ink: '#2b1418', url: 'https://www.klinikpsikologdamrenurgunel.com.tr',
+    slug: 'damrenur-gunel', image: '/work/damrenur.jpg', name: 'Damrenur Günel', rank: 18, status: 'live', color: '#b5838d', ink: '#2b1418', url: 'https://damrenurgunel.vercel.app',
     kind: { tr: 'Web · Sağlık', en: 'Website · Healthcare' },
     pitch: { tr: 'Klinik psikolog için hizmetleri anlatan, iletişimi kolaylaştıran site.', en: 'A site for a clinical psychologist that explains services and makes contact easy.' },
     summary: { tr: 'Klinik psikolog için kurumsal site.', en: 'Website for a clinical psychologist.' },

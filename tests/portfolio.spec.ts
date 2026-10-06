@@ -16,11 +16,11 @@ test('intro builds the logo on the first visit of a session, then the hero takes
 test('projects run from the biggest to the smallest', async ({ page }) => {
   await skipIntro(page)
   await page.goto('/')
-  const names = await page.locator('.feature-name, .pan-name, .row-name').allTextContents()
+  const names = await page.locator('.scene-name, .pan-name, .row-name').allTextContents()
   expect(names.slice(0, 4)).toEqual(['B2B Sipariş', 'Okka ERP', 'Vega WhatsApp', 'Neva QR'])
   expect(names).toHaveLength(19)
   expect(names.at(-1)).toBe('Reklam Paneli')
-  const neva = page.locator('.feature').filter({ hasText: 'Neva QR' }).getByRole('link', { name: 'Siteyi aç' })
+  const neva = page.locator('.scene').filter({ hasText: 'Neva QR' }).getByRole('link', { name: 'Siteyi aç' })
   await expect(neva).toHaveAttribute('href', 'https://nevaqr.com')
   await expect(neva).toHaveAttribute('target', '_blank')
 })
@@ -28,7 +28,7 @@ test('projects run from the biggest to the smallest', async ({ page }) => {
 test('a project without a website opens its case study page', async ({ page }) => {
   await skipIntro(page)
   await page.goto('/')
-  await page.locator('.feature').filter({ hasText: 'B2B Sipariş' }).getByRole('link', { name: 'İncele' }).click()
+  await page.locator('.scene').filter({ hasText: 'B2B Sipariş' }).getByRole('link', { name: 'İncele' }).click()
   await expect(page).toHaveURL(/\/p\/b2b-order-system$/)
   await expect(page.getByRole('heading', { level: 1 })).toContainText('B2B Sipariş')
   await expect(page.getByText('Sıradaki iş')).toBeVisible()
