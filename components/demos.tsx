@@ -1,30 +1,22 @@
 'use client'
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react'
-import { AnimatePresence, motion, useInView, useMotionValueEvent, useReducedMotion, useTransform, type MotionValue } from 'motion/react'
+import { animate, AnimatePresence, motion, useInView, useMotionValue, useReducedMotion, useTransform, type MotionValue } from 'motion/react'
 import type { Lang } from '@/lib/content'
+import type { Project } from '@/lib/projects'
+import { clamp, ease, span, stepAt, tl, useProgress } from '@/components/demo-kit'
+import { NevaDemo } from '@/components/demo-neva'
+import { OkkaDemo } from '@/components/demo-okka'
+import { SeaWatchDemo } from '@/components/demo-seawatch'
+import { LoopDemo } from '@/components/demo-loops'
 
 /*
   Hand-built product stories that replace screenshots where a picture explains less
-  than the flow does. B2B and Neva follow the scene's scroll progress (0-1, the
-  window swings in until 0.2, then one third per step); the WhatsApp story loops on
-  its own so it also works in the horizontal strip and on its case page.
+  than the flow does. B2B, Okka, SeaWatch and Neva follow the scene's scroll progress
+  (0-1, the window swings in until 0.2, then one third per step); the WhatsApp story
+  and the strip stories (demo-loops.tsx) loop on their own clock.
   Everything is sized in container units, so one drawing fits a card or a full stage.
 */
-const clamp = (value: number) => Math.min(1, Math.max(0, value))
-const ease = (value: number) => 1 - Math.pow(1 - value, 3)
-const span = (p: number, from: number, to: number) => clamp((p - from) / (to - from))
-const stepAt = (index: number) => 0.2 + (index * 0.8) / 3
-
-/** Re-renders with the current scroll position; the stories are small enough that this stays cheap. */
-function useProgress(progress: MotionValue<number>, reduced: boolean, still: number) {
-  const [value, setValue] = useState(() => (reduced ? still : progress.get()))
-  useMotionValueEvent(progress, 'change', (next) => { if (!reduced) setValue(next) })
-  return reduced ? still : value
-}
-
-const tl = (n: number, lang: Lang) => '₺' + Math.round(n).toLocaleString(lang === 'tr' ? 'tr-TR' : 'en-US')
-
 /* ---------- B2B: an order travels from a phone to the ERP, then ships and gets paid ---------- */
 
 const orderLines = [
@@ -103,105 +95,6 @@ export function B2BDemo({ progress, lang, reduced }: { progress: MotionValue<num
   )
 }
 
-/* ---------- Neva QR: scan the table's code, the menu opens, designs and prices change ---------- */
-
-// A fixed QR-like pattern: three finder squares and seeded modules, drawn once.
-const qrCells = (() => {
-  const size = 25
-  const cells: [number, number][] = []
-  let seed = 11
-  const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647
-  const finder = (x: number, y: number) => (x < 7 && y < 7) || (x >= size - 7 && y < 7) || (x < 7 && y >= size - 7)
-  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) if (!finder(x, y) && random() < 0.48) cells.push([x, y])
-  return cells
-})()
-
-function QrCode() {
-  const finder = (x: number, y: number) => (
-    <g key={`${x}-${y}`}>
-      <rect x={x} y={y} width={7} height={7} rx={1.2} />
-      <rect x={x + 1} y={y + 1} width={5} height={5} rx={0.8} fill="#fff" />
-      <rect x={x + 2} y={y + 2} width={3} height={3} rx={0.5} />
-    </g>
-  )
-  return (
-    <svg viewBox="-1 -1 27 27" className="qr-code">
-      {qrCells.map(([x, y]) => <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} />)}
-      {finder(0, 0)}{finder(18, 0)}{finder(0, 18)}
-    </svg>
-  )
-}
-
-const themes = [
-  { id: 'nocturne', name: 'Nocturne', sub: 'Lounge · Dining' },
-  { id: 'liman', name: 'Liman', sub: 'Ege mutfağı' },
-  { id: 'cadi', name: 'Cadı Kulübesi', sub: 'Kafe · Tatlı' },
-]
-const menuItems = [
-  { tr: 'Kuzu Tandır', en: 'Lamb Tandoor', price: 480 },
-  { tr: 'Izgara Levrek', en: 'Grilled Sea Bass', price: 460 },
-  { tr: 'Burrata', en: 'Burrata', price: 240 },
-  { tr: 'Ahtapot Salata', en: 'Octopus Salad', price: 420 },
-  { tr: 'Çipura Izgara', en: 'Grilled Sea Bream', price: 540 },
-  { tr: 'İncir Tatlısı', en: 'Fig Dessert', price: 180 },
-]
-
-export function NevaDemo({ progress, lang, reduced }: { progress: MotionValue<number>; lang: Lang; reduced: boolean }) {
-  const p = useProgress(progress, reduced, 0.9)
-  const tr = lang === 'tr'
-  const scan = span(p, stepAt(0), stepAt(1) - 0.04)
-  const phoneIn = ease(span(p, stepAt(0) - 0.02, stepAt(0) + 0.12))
-  const open = ease(span(p, stepAt(1) - 0.05, stepAt(1) + 0.04))
-  const themeIndex = Math.min(themes.length - 1, Math.floor(span(p, stepAt(1) + 0.04, stepAt(2)) * themes.length))
-  const theme = themes[p < stepAt(2) ? themeIndex : 0]
-  const panel = ease(span(p, stepAt(2), stepAt(2) + 0.08))
-  const repriced = p > stepAt(2) + 0.12
-
-  return (
-    <div className="demo demo-neva" aria-hidden="true"><div className="demo-in">
-      <span className="neva-glow" />
-      <div className="neva-card" style={{ transform: `rotate(${-6 + 6 * phoneIn}deg)` }}>
-        <QrCode />
-        <span className="neva-scan" style={{ top: `${8 + 70 * (scan < 1 ? (scan * 2) % 1 : 1)}%`, opacity: scan > 0 && scan < 1 ? 1 : 0 }} />
-        <div className="neva-card-foot"><b>{tr ? 'MASA 4' : 'TABLE 4'}</b><span>{tr ? 'Okut · menü açılsın' : 'Scan · open the menu'}</span></div>
-      </div>
-
-      <motion.div className="neva-panel" style={{ opacity: panel, transform: `translateY(${(1 - panel) * 30}%)` }}>
-        <small>{tr ? 'Panel · Ürünler' : 'Panel · Products'}</small>
-        <div className="neva-panel-row"><span>{menuItems[0][lang]}</span><s>₺480</s><b>₺520</b></div>
-        <em>{repriced ? (tr ? 'Yayında ✓' : 'Live ✓') : (tr ? 'Kaydediliyor…' : 'Saving…')}</em>
-      </motion.div>
-
-      <div className="neva-phone" style={{ transform: `translateX(${(1 - phoneIn) * 60}%) rotate(${(1 - phoneIn) * 8}deg)`, opacity: phoneIn }}>
-        <div className="neva-screen">
-          <div className="neva-camera">
-            <i /><i /><i /><i />
-            <span>{tr ? 'QR aranıyor…' : 'Looking for a QR…'}</span>
-          </div>
-          <div className={`neva-menu neva-${theme.id}`} style={{ clipPath: `circle(${open * 150}% at 50% 45%)` }}>
-            <AnimatePresence mode="wait">
-              <motion.div key={theme.id} className="neva-menu-in" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35 }}>
-                <span className="neva-table">{tr ? 'Masa 4' : 'Table 4'}</span>
-                <b className="neva-brand">{theme.name}</b>
-                <small className="neva-sub">{theme.sub}</small>
-                <ul>
-                  {menuItems.map((item, index) => (
-                    <li key={item.en}>
-                      <span>{item[lang]}</span>
-                      <b data-new={(index === 0 && repriced) || undefined}>₺{index === 0 && repriced ? 520 : item.price}</b>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-      </div>
-      <span className="neva-badge" style={{ opacity: p > stepAt(1) + 0.04 && p < stepAt(2) ? 1 : 0 }}>{tr ? '42 tasarım' : '42 designs'} · {themeIndex + 1}/3</span>
-    </div></div>
-  )
-}
-
 /* ---------- Vega WhatsApp: a balance reminder leaves the ERP and lands on the customer's phone ---------- */
 
 const loop = 10
@@ -269,10 +162,27 @@ export function WhatsAppDemo({ lang }: { lang: Lang }) {
 }
 
 /** Picks the story for a project; scroll stories need the scene's progress. */
-export function ProjectDemo({ kind, progress, lang, reduced }: { kind: 'b2b' | 'neva' | 'whatsapp'; progress?: MotionValue<number>; lang: Lang; reduced: boolean }) {
+export function ProjectDemo({ kind, progress, lang, reduced }: { kind: NonNullable<Project['demo']>; progress?: MotionValue<number>; lang: Lang; reduced: boolean }) {
   const fallback = useTransform(() => 1)
   const value = progress ?? fallback
   if (kind === 'b2b') return <B2BDemo progress={value} lang={lang} reduced={reduced} />
   if (kind === 'neva') return <NevaDemo progress={value} lang={lang} reduced={reduced} />
-  return <WhatsAppDemo lang={lang} />
+  if (kind === 'okka') return <OkkaDemo progress={value} lang={lang} reduced={reduced} />
+  if (kind === 'seawatch') return <SeaWatchDemo progress={value} lang={lang} reduced={reduced} />
+  if (kind === 'whatsapp') return <WhatsAppDemo lang={lang} />
+  return <LoopDemo kind={kind} lang={lang} />
+}
+
+/** Plays a scroll story on its own clock, for places without a pinned scene (the case pages). */
+export function AutoDemo({ kind, lang }: { kind: NonNullable<Project['demo']>; lang: Lang }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { amount: 0.3 })
+  const reduced = useReducedMotion() ?? false
+  const progress = useMotionValue(0.2)
+  useEffect(() => {
+    if (reduced || !inView) return
+    const controls = animate(progress, [0.12, 1], { duration: 16, ease: 'linear', repeat: Infinity, repeatDelay: 2.5 })
+    return () => controls.stop()
+  }, [inView, reduced, progress])
+  return <div ref={ref} className="auto-demo"><ProjectDemo kind={kind} progress={progress} lang={lang} reduced={reduced} /></div>
 }

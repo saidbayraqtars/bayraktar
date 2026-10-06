@@ -71,7 +71,7 @@ export function ToolBelt() {
   )
 }
 
-export function About() {
+export function About({ heading: Heading = 'h2' }: { heading?: 'h1' | 'h2' }) {
   const { t, lang } = useSite()
   const line = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: line, offset: ['start 75%', 'end 60%'] })
@@ -79,7 +79,7 @@ export function About() {
   return (
     <section id="about" className="about">
       <div className="about-lead">
-        <h2 className="section-title"><Kinetic text={t.about.title} base={92} max={118} /></h2>
+        <Heading className="section-title"><Kinetic text={t.about.title} base={92} max={118} /></Heading>
         <ul className="about-facts">{t.about.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
       </div>
       <div className="about-body">
@@ -108,7 +108,7 @@ export function About() {
   )
 }
 
-export function Contact() {
+export function Contact({ heading: Heading = 'h2' }: { heading?: 'h1' | 'h2' }) {
   const { t } = useSite()
   const [copied, setCopied] = useState(false)
   const copy = async () => {
@@ -117,7 +117,7 @@ export function Contact() {
   const cvs = (['dev', 'it'] as const).map((role) => ({ role, label: role === 'dev' ? t.contact.cvDev : t.contact.cvIt, files: cvFiles.filter((file) => file.role === role) }))
   return (
     <section id="contact" className="contact">
-      <h2 className="contact-title"><Kinetic text={t.contact.title} base={100} max={125} /></h2>
+      <Heading className="contact-title"><Kinetic text={t.contact.title} base={100} max={125} /></Heading>
       <p className="contact-lead">{t.contact.lead}</p>
       <div className="contact-mail">
         <Magnetic strength={0.12}><a className="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a></Magnetic>

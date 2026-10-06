@@ -115,6 +115,7 @@ export const copy = {
         langShort: 'EN',
         intro: { skip: 'Geç' },
         hero: {
+            kicker: 'Said Bayraktar · Samsun’da full stack yazılım geliştirici',
             line1: 'Ekrandan',
             line2: 'sunucuya.',
             lead: 'Web, mobil ve masaüstü yazılım geliştiriyorum. Arayüzü de, arkasındaki sunucuyu da ben kuruyorum.',
@@ -134,11 +135,11 @@ export const copy = {
         statsTitle: 'Sayılarla',
         about: {
             title: 'Kodu da, işi de anlıyorum.',
-            p1: 'Samsun’da yaşayan bir full stack geliştiriciyim. Saha satışında müşteriyle birebir çalışırken şunu öğrendim: iyi yazılım, kullanan kişinin gününü kolaylaştırır.',
-            p2: 'Şubat-Ekim 2026 arasında Expert Bilişim’de yazılım geliştirme ile IT desteği bir arada yürüttüm. Ekim 2026’dan beri freelance çalışıyorum ve orada geliştirdiğim ürünlere uzaktan destek vermeye devam ediyorum.',
+            p1: 'Samsun’da yaşayan bir full stack yazılımcıyım: web, mobil ve masaüstü yazılımı arayüzünden veritabanına kadar ben geliştiriyorum. Saha satışında müşteriyle birebir çalışırken şunu öğrendim: iyi yazılım, kullanan kişinin gününü kolaylaştırır.',
+            p2: 'Şubat-Ekim 2026 arasında Expert Bilişim’de yazılım geliştirme ile IT desteği bir arada yürüttüm. Ekim 2026’dan beri freelance çalışıyorum ve orada geliştirdiğim ürünlere uzaktan destek vermeye devam ediyorum. Yazılım geliştirici olarak tam zamanlı, uzaktan ya da proje bazlı yeni bir ekibe katılmaya açığım.',
             experience: 'Deneyim',
             education: 'Eğitim',
-            facts: ['Samsun, Türkiye', 'Türkçe ve İngilizce', 'Uzaktan çalışmaya açık'],
+            facts: ['Samsun, Türkiye', 'Türkçe ve İngilizce', 'Tam zamanlı ve uzaktan işlere açık'],
         },
         contact: {
             title: 'Konuşalım.',
@@ -173,6 +174,7 @@ export const copy = {
         langShort: 'TR',
         intro: { skip: 'Skip' },
         hero: {
+            kicker: 'Said Bayraktar · Full stack developer in Samsun, Türkiye',
             line1: 'Screen',
             line2: 'to server.',
             lead: 'I build web, mobile and desktop software, from the interface down to the server behind it.',
@@ -192,11 +194,11 @@ export const copy = {
         statsTitle: 'In numbers',
         about: {
             title: 'I understand the work behind the code.',
-            p1: 'I’m a full stack developer based in Samsun, Türkiye. Selling face to face in the field taught me that good software makes someone’s day easier.',
-            p2: 'From February to October 2026 I combined software development with IT support at Expert Bilişim. Since October 2026 I work freelance and keep giving remote support for the products I built there.',
+            p1: 'I’m a full stack developer based in Samsun, Türkiye, building web, mobile and desktop software from the interface down to the database. Selling face to face in the field taught me that good software makes someone’s day easier.',
+            p2: 'From February to October 2026 I combined software development with IT support at Expert Bilişim. Since October 2026 I work freelance and keep giving remote support for the products I built there. I’m open to joining a team as a software developer: full-time, remote or per project.',
             experience: 'Experience',
             education: 'Education',
-            facts: ['Samsun, Türkiye', 'Turkish and English', 'Open to remote work'],
+            facts: ['Samsun, Türkiye', 'Turkish and English', 'Open to full-time and remote roles'],
         },
         contact: {
             title: 'Let’s talk.',

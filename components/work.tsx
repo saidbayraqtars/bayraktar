@@ -9,6 +9,7 @@ import { Icon } from '@/components/icons'
 import { Kinetic } from '@/components/kinetic'
 import { Scene } from '@/components/scene'
 import { WhatsAppDemo } from '@/components/demos'
+import { isLoopKind, LoopDemo } from '@/components/demo-loops'
 import { displayHost, projectHref, projects, type Project } from '@/lib/projects'
 import type { Copy, Lang } from '@/lib/content'
 
@@ -25,6 +26,8 @@ function Media({ project, sizes, lang }: { project: Project; sizes: string; lang
     <div className="media" style={brand(project)}>
       {project.demo === 'whatsapp' ? (
         <WhatsAppDemo lang={lang} />
+      ) : isLoopKind(project.demo) ? (
+        <LoopDemo kind={project.demo} lang={lang} />
       ) : project.image ? (
         <div className="media-shot">
           <Image src={project.image} alt="" fill sizes={sizes} className="media-img" />
@@ -54,12 +57,13 @@ function Meta({ project, t, lang }: { project: Project; t: Copy; lang: Lang }) {
   )
 }
 
-export function Work() {
+/** `heading` is h1 on the stand-alone /isler page, h2 inside the home page. */
+export function Work({ heading: Heading = 'h2' }: { heading?: 'h1' | 'h2' }) {
   const { t, lang } = useSite()
   return (
     <section id="work" className="work">
       <header className="work-head">
-        <h2 className="section-title"><Kinetic text={t.work.title} base={92} max={120} /></h2>
+        <Heading className="section-title"><Kinetic text={t.work.title} base={92} max={120} /></Heading>
         <p className="work-lead">{t.work.lead}</p>
       </header>
       <FeatureScenes t={t} lang={lang} />

@@ -1,0 +1,31 @@
+# Said Bayraktar
+
+> Full stack software developer (yazılım geliştirici) based in Samsun, Türkiye. Builds web, mobile and desktop business software end to end: interface, server, database and deployment. Open to full-time, remote and freelance roles.
+
+- Site: https://www.sbayraktar.com.tr
+- Email: saidbayraktar9@gmail.com
+- GitHub: https://github.com/saidbayraqtars
+- LinkedIn: https://linkedin.com/in/said-bayraktar9
+- Languages: Turkish (native), English
+
+## Skills
+
+- Frontend: React, Next.js, React Native (Expo), Tailwind CSS
+- Backend: Node.js, Express, NestJS, Laravel, SSE
+- Databases: PostgreSQL, PostGIS, SQL Server, Prisma, SQLite
+- Desktop and delivery: Electron, NSIS auto-update, RSA licensing, Docker, Cloudflare
+- Systems: Windows Server, Active Directory, Hyper-V, PowerShell
+
+## Selected work
+
+- [B2B Sipariş](https://www.sbayraktar.com.tr/p/b2b-order-system): dealer portal, field-sales mobile app and ERP bridge with 1,200+ automated tests.
+- [Okka ERP](https://www.sbayraktar.com.tr/p/okka): ERP covering accounting, stock, staff and production, built in TypeScript.
+- [SeaWatch](https://www.sbayraktar.com.tr/p/seawatch): live vessel tracking; AIS positions filtered by region in PostGIS and streamed over SSE.
+- [Neva QR](https://nevaqr.com): QR menu platform for restaurants with 42 designs, live.
+- [Vega WhatsApp](https://www.sbayraktar.com.tr/p/vega-whatsapp): sends balances, statements and documents from Vega ERP over WhatsApp; running on 12 machines.
+- [All 19 projects](https://www.sbayraktar.com.tr/isler)
+
+## Pages
+
+- [About and resume](https://www.sbayraktar.com.tr/hakkimda)
+- [Contact](https://www.sbayraktar.com.tr/iletisim)

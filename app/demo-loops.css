@@ -1,0 +1,76 @@
+/* Looping stories for the strip and case pages (components/demo-loops.tsx). Drawn for a 4:3 card, sized in em. */
+.demo-loop { background: radial-gradient(120% 100% at 20% 0%, color-mix(in srgb, var(--c) 30%, var(--surface)) 0%, color-mix(in srgb, var(--c) 8%, var(--surface)) 60%); color: var(--ink); }
+.media > .demo-loop .demo-in { font-size: 3.3cqw; }
+.case-media > .demo-loop .demo-in { font-size: 1.7cqw; }
+@container (max-width: 560px) { .case-media > .demo-loop .demo-in { font-size: 3.3cqw; } }
+.lp-card { position: absolute; padding: 1em 1.1em; border-radius: 1em; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 1.6em 3.2em -1.6em rgb(9 38 52 / .45); }
+.lp-row { display: flex; justify-content: space-between; align-items: center; gap: .6em; }
+.lp-pill { padding: .25em .7em; border-radius: 999px; background: var(--c); color: var(--ci); font-size: .72em; font-weight: 750; }
+.lp-muted { font-size: .7em; color: var(--muted); }
+.lp-chip { position: absolute; display: inline-flex; align-items: center; gap: .45em; padding: .4em .85em; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); font-size: .74em; font-weight: 700; white-space: nowrap; }
+.lp-chip-dark { background: var(--navy); color: var(--paper); border-color: transparent; }
+.lp-dot { width: .55em; height: .55em; border-radius: 50%; background: #22c55e; animation: sw-blink 1.2s ease-in-out infinite; }
+
+/* ArcTeknik */
+.arc-ticket { left: 6%; top: 8%; width: 56%; display: grid; gap: .45em; }
+.arc-ticket b { font-size: 1.2em; font-variation-settings: "wdth" 112; }
+.arc-device { font-weight: 650; }
+.arc-steps { display: grid; gap: .3em; margin-top: .3em; }
+.arc-steps li { display: flex; align-items: center; gap: .6em; font-size: .78em; color: var(--muted); transition: color .3s; }
+.arc-steps li i { width: .8em; height: .8em; border-radius: 50%; border: 2px solid var(--line-strong); transition: background .3s, border-color .3s; }
+.arc-steps li[data-on] { color: var(--ink); }
+.arc-steps li[data-on] i { background: var(--c); border-color: var(--c); }
+.arc-steps li[data-now] { font-weight: 750; }
+.arc-steps li[data-now] i { box-shadow: 0 0 0 .3em color-mix(in srgb, var(--c) 30%, transparent); }
+.arc-badges { position: absolute; right: 5%; top: 10%; width: 30%; display: grid; justify-items: end; gap: .6em; }
+.arc-badges .lp-chip { white-space: normal; text-align: right; }
+.arc-badges .lp-chip { position: static; }
+.arc-slip { position: absolute; right: 6%; bottom: 0; width: 42%; display: grid; gap: .3em; padding: .9em 1em 1.6em; border-radius: .7em .7em 0 0; background: #fffdf7; color: #222; box-shadow: 0 -1em 2em -1em rgb(0 0 0 / .3); font-size: .78em; }
+.arc-slip span { display: flex; justify-content: space-between; color: #555; }
+.arc-slip em { font-style: normal; font-weight: 750; color: #222; }
+
+/* Hızlı Belge */
+.hb-sheet { left: 6%; right: 6%; top: 8%; padding: .6em; }
+.hb-row { display: grid; grid-template-columns: 1.6fr .8fr 1fr .9fr 1fr; gap: .4em; align-items: center; min-height: 2.6em; padding: .35em .5em; border-radius: .5em; font-size: .8em; font-variant-numeric: tabular-nums; }
+.hb-head { color: var(--muted); font-size: .68em; text-transform: uppercase; letter-spacing: .05em; min-height: 0; }
+.hb-row[data-on] { background: color-mix(in srgb, var(--c) 18%, transparent); }
+.hb-row[data-typing] { outline: 2px solid var(--c); outline-offset: -2px; }
+.hb-auto { color: var(--muted); }
+.hb-row[data-on] .hb-auto { color: inherit; }
+.hb-caret { display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -.15em; background: var(--ink); animation: sw-blink .8s steps(2) infinite; }
+.hb-foot { display: flex; justify-content: space-between; margin-top: .4em; padding: .55em .5em 0; border-top: 1px dashed var(--line-strong); font-size: .78em; }
+.hb-keys { position: absolute; left: 6%; bottom: 8%; display: flex; gap: .5em; }
+.hb-keys kbd { min-width: 2.6em; padding: .5em .7em; border-radius: .5em; background: var(--surface); border: 1px solid var(--line-strong); box-shadow: 0 .25em 0 var(--line-strong); font: 700 .78em/1 ui-monospace, monospace; text-align: center; transition: transform .1s, box-shadow .1s; }
+.hb-keys kbd[data-down] { transform: translateY(.2em); box-shadow: 0 .05em 0 var(--line-strong); background: var(--c); color: var(--ci); }
+.hb-vega { right: 6%; bottom: 9%; }
+.hb-vega[data-on] { background: #157a41; }
+
+/* Galya */
+.gl-src { top: 8%; }
+.gl-a { left: 6%; }
+.gl-b { right: 6%; }
+.gl-packet { position: absolute; z-index: 2; width: .9em; height: .9em; border-radius: 50%; background: var(--c); box-shadow: 0 0 .8em var(--c); translate: -50% -50%; transition: opacity .2s; }
+.gl-table { left: 8%; right: 8%; top: 34%; padding: .6em .8em; opacity: .55; transition: opacity .4s; }
+.gl-table[data-on] { opacity: 1; }
+.gl-row { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.1fr; gap: .4em; align-items: center; padding: .45em .4em; border-radius: .5em; font-size: .8em; font-variant-numeric: tabular-nums; transition: background .3s; }
+.gl-head { color: var(--muted); font-size: .66em; text-transform: uppercase; letter-spacing: .05em; }
+.gl-row b { color: color-mix(in srgb, var(--hot) 55%, var(--ink)); text-align: right; }
+.gl-row[data-alert] { background: color-mix(in srgb, var(--hot) 16%, transparent); animation: demo-ring-row 1.4s ease-in-out infinite; }
+@keyframes demo-ring-row { 50% { background: color-mix(in srgb, var(--hot) 28%, transparent); } }
+.gl-note { margin: .4em .4em 0; }
+
+/* Vega Ticket */
+.tk-board { position: absolute; left: 5%; right: 5%; top: 8%; height: 50%; display: grid; grid-template-columns: repeat(3, 1fr); gap: .5em; }
+.tk-col { border-radius: .8em; background: color-mix(in srgb, var(--surface) 60%, transparent); border: 1px dashed var(--line-strong); padding: .6em; }
+.tk-col small { font-size: .7em; font-weight: 700; color: var(--muted); }
+.tk-card { top: 28%; width: 29%; display: grid; gap: .2em; padding: .65em .7em; font-size: .78em; transition: left .1s linear; }
+.tk-card b { font-size: .95em; }
+.tk-card span { color: var(--muted); font-size: .85em; }
+.tk-card em { font-style: normal; font-weight: 750; }
+.tk-wa { left: 5%; bottom: 10%; }
+.tk-wa[data-on] { border-color: #25d366; }
+.tk-slip { position: absolute; right: 6%; bottom: 6%; width: 34%; height: 34%; display: grid; align-content: start; gap: .35em; padding: .8em; border-radius: .4em; background: #fffdf7; color: #222; box-shadow: 0 1em 2em -1em rgb(0 0 0 / .4); font-size: .72em; }
+.tk-slip span { color: #666; }
+.tk-slip i { height: .45em; border-radius: 999px; background: #e4e0d4; }
+.tk-slip i:nth-of-type(2) { width: 70%; }
+.tk-slip i:nth-of-type(3) { width: 45%; }

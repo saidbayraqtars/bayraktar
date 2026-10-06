@@ -9,7 +9,8 @@ import { Header, Footer } from '@/components/chrome'
 import { Icon } from '@/components/icons'
 import { Kinetic } from '@/components/kinetic'
 import { PageLink } from '@/components/transition'
-import { WhatsAppDemo } from '@/components/demos'
+import { AutoDemo, WhatsAppDemo } from '@/components/demos'
+import { isLoopKind, LoopDemo } from '@/components/demo-loops'
 import { profile } from '@/lib/content'
 import { projectHref, showcaseProjects, type Project } from '@/lib/projects'
 
@@ -32,8 +33,12 @@ export function Showcase({ project }: { project: Project }) {
         <motion.div className="case-media" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}>
           {project.demo === 'whatsapp'
             ? <WhatsAppDemo lang={lang} />
+            : isLoopKind(project.demo)
+            ? <LoopDemo kind={project.demo} lang={lang} />
+            : project.demo
+            ? <AutoDemo kind={project.demo} lang={lang} />
             : project.image
-            ? <div className="media-shot"><Image src={project.image} alt="" fill sizes="92vw" className="media-img" priority /></div>
+            ? <div className="media-shot"><Image src={project.image} alt={`${project.name} ekran görüntüsü`} fill sizes="92vw" className="media-img" priority /></div>
             : <div className="media-poster" aria-hidden="true"><span data-text={project.name}>{project.name}</span></div>}
         </motion.div>
         <section className="case-body">

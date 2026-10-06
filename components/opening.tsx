@@ -48,6 +48,7 @@ export function Opening({ ready }: { ready: boolean }) {
       <div className="opening-stage">
         <motion.div className="hero-copy" style={reduced ? undefined : { opacity: copyOpacity, y: copyY }} data-hidden={active >= 0 || undefined}>
           <h1 className="hero-title">
+            <motion.span className="hero-kicker" initial={{ opacity: 0, y: 12 }} animate={ready ? { opacity: 1, y: 0 } : undefined} transition={{ duration: 0.7, delay: 0.1 }}>{t.hero.kicker}</motion.span>
             <Kinetic text={t.hero.line1} ready={ready} base={104} />
             <Kinetic text={t.hero.line2} ready={ready} delay={0.18} base={104} />
           </h1>

@@ -10,9 +10,9 @@ export function Subpage({ kind }: { kind: 'work' | 'about' | 'contact' }) {
     <>
       <Header />
       <main id="main" className="subpage">
-        {kind === 'work' && <Work />}
-        {kind === 'about' && <><About /><Stats /><ToolBelt /></>}
-        {kind === 'contact' && <Contact />}
+        {kind === 'work' && <Work heading="h1" />}
+        {kind === 'about' && <><About heading="h1" /><Stats /><ToolBelt /></>}
+        {kind === 'contact' && <Contact heading="h1" />}
       </main>
       <Footer />
     </>

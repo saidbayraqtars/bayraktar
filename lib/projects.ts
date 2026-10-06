@@ -26,7 +26,7 @@ export type Project = {
   /** Where the scene's pointer clicks, in % of the screenshot (x, y). */
   target?: [number, number]
   /** A hand-built animated story shown instead of the screenshot (components/demos.tsx). */
-  demo?: 'b2b' | 'neva' | 'whatsapp'
+  demo?: 'b2b' | 'neva' | 'okka' | 'seawatch' | 'whatsapp' | 'arcteknik' | 'hizli' | 'galya' | 'ticket'
   /** Built while working at Expert Bilişim; the showcase page says so. */
   employer?: boolean
   /** Cartridge label colour and the text colour that sits on it. */
@@ -36,7 +36,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'b2b-order-system', demo: 'b2b', image: '/work/b2b.png', name: 'B2B Sipariş', rank: 1, status: 'field', color: '#2f5bd3', ink: '#ffffff',
+    slug: 'b2b-order-system', demo: 'b2b', image: '/work/b2b.png', name: 'B2B Sipariş', rank: 1, status: 'field', color: '#004e72', ink: '#ffffff',
     kind: { tr: 'Web + mobil iş sistemi', en: 'Web + mobile business system' },
     pitch: { tr: 'Bayi portalı, saha satış uygulaması ve ERP köprüsü. 1.200’den fazla otomatik test.', en: 'Dealer portal, field-sales app and ERP bridge. More than 1,200 automated tests.' },
     summary: { tr: 'Toptancılar için bayi portalı, plasiyer mobil uygulaması ve ERP köprüsünden oluşan sipariş sistemi. Sipariş, sevkiyat, tahsilat ve depo stoku aynı yerde; her akış otomatik testlerle korunuyor.', en: 'An ordering system for wholesalers made of a dealer portal, a field-sales mobile app and an ERP bridge. Orders, shipments, collections and warehouse stock live in one place, and every flow is covered by automated tests.' },
@@ -55,8 +55,8 @@ export const projects: Project[] = [
     repo: 'https://github.com/saidbayraqtars/b2b-order-system',
   },
   {
-    slug: 'okka', image: '/work/okka-fatura.jpg', shots: ['/work/okka-uretim.jpg'], name: 'Okka ERP', rank: 2, status: 'dev', color: '#146b63', ink: '#ffffff',
-    kind: { tr: 'ERP · Geliştirmede', en: 'ERP · In development' },
+    slug: 'okka', demo: 'okka', image: '/work/okka-fatura.jpg', shots: ['/work/okka-uretim.jpg'], name: 'Okka ERP', rank: 2, status: 'dev', color: '#146b63', ink: '#ffffff',
+    kind: { tr: 'ERP · Muhasebe, stok, üretim', en: 'ERP · Accounting, stock, production' },
     pitch: { tr: 'Ön muhasebe, cari, stok, personel ve üretimi tek yerde toplayan yeni nesil ERP.', en: 'A new ERP bringing accounting, accounts, stock, staff and production together.' },
     summary: { tr: 'Ön muhasebe, cari, stok, personel, gider ve üretim modüllerini sıfırdan TypeScript ile kurduğum ERP. Belge onayı stok defterine yazıyor; her modül kendi tasarım sistemi bileşenleri ve uçtan uca testleriyle geliyor.', en: 'An ERP I am building from scratch in TypeScript, covering accounting, accounts, stock, staff, expenses and production. Approved documents post to the stock ledger, and every module ships with design-system components and end-to-end tests.' },
     highlights: [
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     target: [62, 50],
   },
   {
-    slug: 'arcteknik-suite', image: '/work/arcteknik.png', name: 'ArcTeknik ERP', rank: 5, status: 'ready', color: '#e0832b', ink: '#1f1206',
+    slug: 'arcteknik-suite', demo: 'arcteknik', image: '/work/arcteknik.png', name: 'ArcTeknik ERP', rank: 5, status: 'ready', color: '#e0832b', ink: '#1f1206',
     kind: { tr: 'Masaüstü ERP · Teknik servis', en: 'Desktop ERP · Technical service' },
     pitch: { tr: 'Teknik servis ve perakende için internetsiz çalışan ERP.', en: 'An offline ERP for technical service shops and retail.' },
     summary: { tr: 'Teknik servis ve perakende işletmeleri için tamamen çevrimdışı çalışan ERP. Tek kod tabanından birden fazla uygulama çıkıyor; donanıma bağlı RSA lisansla dağıtılıyor ve diğer masaüstü ürünlerime şablon oldu.', en: 'A fully offline ERP for technical service and retail businesses. One codebase produces several applications, ships with hardware-bound RSA licensing and became the template for my other desktop products.' },
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     stack: ['React', 'Electron', 'Express', 'SQL Server', 'SQLite'],
   },
   {
-    slug: 'hizli-belge', image: '/work/hizli-belge.jpg', name: 'Hızlı Belge', rank: 6, status: 'field', color: '#f2c94c', ink: '#2a2105', employer: true,
+    slug: 'hizli-belge', demo: 'hizli', image: '/work/hizli-belge.jpg', name: 'Hızlı Belge', rank: 6, status: 'field', color: '#f2c94c', ink: '#2a2105', employer: true,
     kind: { tr: 'Masaüstü · Toptan satış', en: 'Desktop · Wholesale' },
     pitch: { tr: 'Sebze-meyve toptancıları için klavyeyle hızlı belge girişi ve kasa takibi.', en: 'Fast keyboard document entry and crate tracking for produce wholesalers.' },
     summary: { tr: 'Sebze ve meyve toptancıları için belge girişi, dara hesabı, kasa depozitosu ve Vega ERP kaydı. Eski bir Access uygulamasının yerini aldı; bilgisayar deneyimi az olan kullanıcı için klavye odaklı tasarlandı.', en: 'Document entry, tare calculation, crate deposits and Vega ERP records for produce wholesalers. It replaced an old Access application and was designed keyboard-first for users with little computer experience.' },
@@ -134,7 +134,7 @@ export const projects: Project[] = [
     stack: ['Electron', 'JavaScript', 'SQL Server'],
   },
   {
-    slug: 'galya-panel', image: '/work/galya.jpg', name: 'Galya Panel', rank: 7, status: 'field', color: '#8e3b46', ink: '#ffffff',
+    slug: 'galya-panel', demo: 'galya', image: '/work/galya.jpg', name: 'Galya Panel', rank: 7, status: 'field', color: '#8e3b46', ink: '#ffffff',
     kind: { tr: 'Masaüstü · Stok ve maliyet', en: 'Desktop · Stock and cost' },
     pitch: { tr: 'İki ERP’nin stok, sayım ve maliyet verisini tek ekranda topluyor.', en: 'Brings stock, count and cost data from two ERPs onto one screen.' },
     summary: { tr: 'VegaWin ve Vega Şefim verilerini salt okunur birleştiren stok, maliyet, sayım ve e-fatura takip uygulaması. Dikkat isteyen kayıtlar tek panelde; ara sayım, reçete ve günlük satış raporları ayrı çalışma alanlarında.', en: 'A stock, cost, count and e-invoice monitor that reads VegaWin and Vega Şefim data without writing to it. Records that need attention sit in one panel, with separate workspaces for counts, recipes and daily sales reports.' },
@@ -146,7 +146,7 @@ export const projects: Project[] = [
     stack: ['Electron', 'Node.js', 'SQL Server'],
   },
   {
-    slug: 'vega-ticket', image: '/work/vega-ticket.jpg', name: 'Vega Ticket', rank: 8, status: 'field', color: '#3a6ea5', ink: '#ffffff', employer: true,
+    slug: 'vega-ticket', demo: 'ticket', image: '/work/vega-ticket.jpg', name: 'Vega Ticket', rank: 8, status: 'field', color: '#3a6ea5', ink: '#ffffff', employer: true,
     kind: { tr: 'Masaüstü · Destek operasyonu', en: 'Desktop · Support operations' },
     pitch: { tr: 'Müşteri işlemleri, sözleşme süreleri ve servis kayıtları tek yerde.', en: 'Customer work, contract periods and service records in one place.' },
     summary: { tr: 'Destek ekibinin müşteriye yaptığı işlemleri, söylenen ücretleri ve sözleşme sürelerini ortak tuttuğu masaüstü uygulama. Vega müşteri verisini okuyor, kendi kayıtlarını ayrı veritabanında tutuyor; merkezi WhatsApp kuyruğu ve A5 servis fişi var.', en: 'A desktop application where the support team shares customer work records, quoted fees and contract periods. It reads Vega customer data, keeps its own records in a separate database, and has a central WhatsApp queue and A5 service slips.' },
@@ -159,7 +159,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/saidbayraqtars/vega-ticket-sistem-releases',
   },
   {
-    slug: 'seawatch', image: '/work/seawatch.jpg', name: 'SeaWatch', rank: 3, status: 'ready', color: '#0e4f6e', ink: '#dff6ff',
+    slug: 'seawatch', demo: 'seawatch', image: '/work/seawatch.jpg', name: 'SeaWatch', rank: 3, status: 'ready', color: '#0e4f6e', ink: '#dff6ff',
     kind: { tr: 'SaaS · Denizcilik', en: 'SaaS · Maritime' },
     pitch: { tr: 'Gemi konumlarını bölgeye göre süzüp haritaya canlı aktaran takip sistemi.', en: 'Filters vessel positions by region and streams them to a live map.' },
     summary: { tr: 'AIS gemi konumlarını PostgreSQL/PostGIS’te bölgeye göre süzüp web ve mobil haritaya SSE ile gerçek zamanlı aktaran takip sistemi. Veri sağlayıcısı değiştirilebilir, abonelik bölge bazlı.', en: 'A tracking system that filters AIS vessel positions by region in PostgreSQL/PostGIS and streams them to web and mobile maps over SSE. Data providers are interchangeable and subscriptions are per region.' },
