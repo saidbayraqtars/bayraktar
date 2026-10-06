@@ -6,6 +6,7 @@ import { useSite } from '@/components/providers'
 import { Kinetic } from '@/components/kinetic'
 import { LayerStack } from '@/components/layer-stack'
 import { Magnetic } from '@/components/magnetic'
+import { PageLink } from '@/components/transition'
 import { layers } from '@/lib/content'
 
 const heroEnd = 0.14
@@ -54,8 +55,8 @@ export function Opening({ ready }: { ready: boolean }) {
             {t.hero.lead}
           </motion.p>
           <motion.div className="hero-actions" initial={{ opacity: 0, y: 16 }} animate={ready ? { opacity: 1, y: 0 } : undefined} transition={{ duration: 0.8, delay: 0.85 }}>
-            <Magnetic><a href="#work" className="btn btn-solid">{t.hero.work}</a></Magnetic>
-            <Magnetic><a href="#contact" className="btn btn-line">{t.hero.contact}</a></Magnetic>
+            <Magnetic><PageLink href="/isler" className="btn btn-solid">{t.hero.work}</PageLink></Magnetic>
+            <Magnetic><PageLink href="/iletisim" className="btn btn-line">{t.hero.contact}</PageLink></Magnetic>
           </motion.div>
         </motion.div>
 

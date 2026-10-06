@@ -8,6 +8,7 @@ import { useSite } from '@/components/providers'
 import { Icon } from '@/components/icons'
 import { Kinetic } from '@/components/kinetic'
 import { Scene } from '@/components/scene'
+import { WhatsAppDemo } from '@/components/demos'
 import { displayHost, projectHref, projects, type Project } from '@/lib/projects'
 import type { Copy, Lang } from '@/lib/content'
 
@@ -19,10 +20,12 @@ const brand = (project: Project) => ({ '--c': project.color, '--ci': project.ink
 const two = (rank: number) => String(rank).padStart(2, '0')
 
 /** Real screenshot when we have one, otherwise the name set as a poster in the project's colour. */
-function Media({ project, sizes }: { project: Project; sizes: string }) {
+function Media({ project, sizes, lang }: { project: Project; sizes: string; lang: Lang }) {
   return (
     <div className="media" style={brand(project)}>
-      {project.image ? (
+      {project.demo === 'whatsapp' ? (
+        <WhatsAppDemo lang={lang} />
+      ) : project.image ? (
         <div className="media-shot">
           <Image src={project.image} alt="" fill sizes={sizes} className="media-img" />
         </div>
@@ -105,7 +108,7 @@ function Pan({ t, lang }: { t: Copy; lang: Lang }) {
         <motion.div ref={track} className="pan-track" style={{ x: smooth }}>
           {middle.map((project) => (
             <article key={project.slug} className="pan-card">
-              <Media project={project} sizes="(max-width: 768px) 80vw, 34vw" />
+              <Media project={project} sizes="(max-width: 768px) 80vw, 34vw" lang={lang} />
               <div className="pan-info">
                 <span className="pan-rank">{two(project.rank)}</span>
                 <h3 className="pan-name">{project.name}</h3>

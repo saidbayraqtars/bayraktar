@@ -25,6 +25,8 @@ export type Project = {
   stats?: Localized[]
   /** Where the scene's pointer clicks, in % of the screenshot (x, y). */
   target?: [number, number]
+  /** A hand-built animated story shown instead of the screenshot (components/demos.tsx). */
+  demo?: 'b2b' | 'neva' | 'whatsapp'
   /** Built while working at Expert Bilişim; the showcase page says so. */
   employer?: boolean
   /** Cartridge label colour and the text colour that sits on it. */
@@ -34,14 +36,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: 'b2b-order-system', image: '/work/b2b.png', name: 'B2B Sipariş', rank: 1, status: 'field', color: '#2f5bd3', ink: '#ffffff',
+    slug: 'b2b-order-system', demo: 'b2b', image: '/work/b2b.png', name: 'B2B Sipariş', rank: 1, status: 'field', color: '#2f5bd3', ink: '#ffffff',
     kind: { tr: 'Web + mobil iş sistemi', en: 'Web + mobile business system' },
     pitch: { tr: 'Bayi portalı, saha satış uygulaması ve ERP köprüsü. 1.200’den fazla otomatik test.', en: 'Dealer portal, field-sales app and ERP bridge. More than 1,200 automated tests.' },
     summary: { tr: 'Toptancılar için bayi portalı, plasiyer mobil uygulaması ve ERP köprüsünden oluşan sipariş sistemi. Sipariş, sevkiyat, tahsilat ve depo stoku aynı yerde; her akış otomatik testlerle korunuyor.', en: 'An ordering system for wholesalers made of a dealer portal, a field-sales mobile app and an ERP bridge. Orders, shipments, collections and warehouse stock live in one place, and every flow is covered by automated tests.' },
     highlights: [
-      { tr: 'Bayi, saha ve yönetim için ayrı çalışma alanları', en: 'Separate workspaces for dealers, field sales and management' },
-      { tr: 'Çoklu birim, depo bazlı stok ve fiyat geçmişi', en: 'Multiple units, per-warehouse stock and price history' },
-      { tr: 'Kullanıcının kendi kurduğu raporlar ve rol tabanlı yetkiler', en: 'User-built reports and role-based permissions' },
+      { tr: 'Bayi ya da plasiyer siparişi telefondan giriyor', en: 'A dealer or sales rep enters the order on a phone' },
+      { tr: 'Sipariş ERP’ye düşüyor, stok depo bazında ayrılıyor', en: 'The order reaches the ERP and stock is reserved per warehouse' },
+      { tr: 'Sevkiyat ve tahsilat aynı ekrandan izleniyor', en: 'Shipment and payment are tracked from the same screen' },
     ],
     stack: ['Next.js', 'TypeScript', 'Expo', 'PostgreSQL', 'Prisma', 'Electron'],
     stats: [
@@ -71,7 +73,7 @@ export const projects: Project[] = [
     target: [10, 46],
   },
   {
-    slug: 'vega-whatsapp', image: '/work/vega-whatsapp.jpg', shots: ['/work/vega-whatsapp-2.jpg'], name: 'Vega WhatsApp', rank: 3, status: 'field', color: '#1f9d55', ink: '#ffffff', employer: true,
+    slug: 'vega-whatsapp', demo: 'whatsapp', image: '/work/vega-whatsapp.jpg', shots: ['/work/vega-whatsapp-2.jpg'], name: 'Vega WhatsApp', rank: 9, status: 'field', color: '#1f9d55', ink: '#ffffff', employer: true,
     kind: { tr: 'Masaüstü · Tahsilat otomasyonu', en: 'Desktop · Collections automation' },
     pitch: { tr: 'ERP carilerine WhatsApp’tan bakiye hatırlatma, ekstre ve belge gönderiyor.', en: 'Sends balance reminders, statements and documents to ERP accounts over WhatsApp.' },
     summary: { tr: 'Vega ERP carilerine WhatsApp üzerinden bakiye hatırlatma, ekstre, belge bildirimi, çek/senet vadesi ve e-fatura PDF’i gönderen masaüstü ürün. Yapay zekâ ile otomatik yanıt, çoklu hesap ve resmî Meta Cloud API modu var.', en: 'A desktop product that sends balance reminders, statements, document notices, cheque due dates and e-invoice PDFs to Vega ERP accounts over WhatsApp. It has AI auto-replies, multiple accounts and an official Meta Cloud API mode.' },
@@ -89,21 +91,21 @@ export const projects: Project[] = [
     target: [21, 24],
   },
   {
-    slug: 'neva-qr', image: '/work/neva.png', name: 'Neva QR', rank: 4, status: 'live', color: '#2b2440', ink: '#f3cf6b', url: 'https://nevaqr.com',
+    slug: 'neva-qr', demo: 'neva', image: '/work/neva.png', name: 'Neva QR', rank: 4, status: 'live', color: '#2b2440', ink: '#f3cf6b', url: 'https://nevaqr.com',
     kind: { tr: 'SaaS · Dijital menü', en: 'SaaS · Digital menus' },
-    pitch: { tr: 'Restoranlar için 40’tan fazla tasarımlı QR menü platformu. Canlıda.', en: 'A QR menu platform for restaurants with more than 40 designs. Live.' },
+    pitch: { tr: 'Restoranlar için 42 tasarımlı QR menü platformu. Canlıda.', en: 'A QR menu platform for restaurants with 42 designs. Live.' },
     summary: { tr: 'Restoranın kimliğini masaya taşıyan QR menü platformu.', en: 'A QR menu platform that brings a restaurant’s identity to the table.' },
     highlights: [
-      { tr: 'Her restorana kendi renkleri ve tasarımı', en: 'Each restaurant gets its own colours and design' },
-      { tr: 'Masadaki QR ile anında açılan menü', en: 'A menu that opens from the QR code on the table' },
-      { tr: 'Ürün ve fiyatlar panelden güncelleniyor', en: 'Products and prices are updated from the panel' },
+      { tr: 'Masadaki QR okutulunca menü saniyeler içinde açılıyor', en: 'Scan the QR on the table and the menu opens in seconds' },
+      { tr: 'Her restorana kendi tasarımı: 42 şablon, tek tıkla', en: 'Every restaurant gets its own look: 42 designs, one click' },
+      { tr: 'Fiyat panelden değişiyor, masadaki QR hiç değişmiyor', en: 'Prices change in the panel, the QR on the table never does' },
     ],
     stack: ['Laravel', 'PHP', 'Alpine.js', 'SQLite', 'Cloudflare'],
     shots: ['/work/neva-menu.png'],
     stats: [
-      { tr: '40+ menü tasarımı', en: '40+ menu designs' },
+      { tr: '42 menü tasarımı', en: '42 menu designs' },
+      { tr: '11 dilde menü', en: 'Menus in 11 languages' },
       { tr: 'Canlıda', en: 'Live' },
-      { tr: 'Cloudflare üzerinde', en: 'Runs on Cloudflare' },
     ],
     target: [62, 50],
   },
@@ -157,7 +159,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/saidbayraqtars/vega-ticket-sistem-releases',
   },
   {
-    slug: 'seawatch', image: '/work/seawatch.jpg', name: 'SeaWatch', rank: 9, status: 'ready', color: '#0e4f6e', ink: '#dff6ff',
+    slug: 'seawatch', image: '/work/seawatch.jpg', name: 'SeaWatch', rank: 3, status: 'ready', color: '#0e4f6e', ink: '#dff6ff',
     kind: { tr: 'SaaS · Denizcilik', en: 'SaaS · Maritime' },
     pitch: { tr: 'Gemi konumlarını bölgeye göre süzüp haritaya canlı aktaran takip sistemi.', en: 'Filters vessel positions by region and streams them to a live map.' },
     summary: { tr: 'AIS gemi konumlarını PostgreSQL/PostGIS’te bölgeye göre süzüp web ve mobil haritaya SSE ile gerçek zamanlı aktaran takip sistemi. Veri sağlayıcısı değiştirilebilir, abonelik bölge bazlı.', en: 'A tracking system that filters AIS vessel positions by region in PostgreSQL/PostGIS and streams them to web and mobile maps over SSE. Data providers are interchangeable and subscriptions are per region.' },
@@ -167,6 +169,12 @@ export const projects: Project[] = [
       { tr: 'Web ve mobil istemci', en: 'Web and mobile clients' },
     ],
     stack: ['React', 'Node.js', 'PostGIS', 'SSE', 'Expo'],
+    stats: [
+      { tr: 'Canlı akış (SSE)', en: 'Live stream (SSE)' },
+      { tr: 'PostGIS bölge süzgeci', en: 'PostGIS region filters' },
+      { tr: 'Web + mobil', en: 'Web + mobile' },
+    ],
+    target: [31, 27],
   },
   {
     slug: 'yavuz-grup', image: '/work/yavuz.jpg', name: 'Yavuz Grup', rank: 10, status: 'live', color: '#b9a48a', ink: '#2a2118', url: 'https://yavuzgrupinsaat.com.tr',

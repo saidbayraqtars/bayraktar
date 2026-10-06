@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 
 type KineticProps = {
@@ -12,6 +12,11 @@ type KineticProps = {
   base?: number
   max?: number
   className?: string
+}
+
+function words(text: string) {
+  let start = 0
+  return text.split(' ').map((word) => { const item = { word, start }; start += word.length + 1; return item })
 }
 
 /**
@@ -83,16 +88,24 @@ export function Kinetic({ text, ready = true, delay = 0, base = 100, max = 125, 
   return (
     <span ref={ref} className={`kinetic ${className ?? ''}`}>
       <span className="sr-only">{text}</span>
-      {text.split('').map((letter, index) => (
-        <span key={index} className="kinetic-cell" aria-hidden="true">
-          <motion.span data-letter className="kinetic-letter"
-            style={{ fontVariationSettings: `"wdth" ${base}` }}
-            initial={reduced ? false : { y: '105%', fontVariationSettings: '"wdth" 62' }}
-            animate={ready ? { y: '0%', fontVariationSettings: `"wdth" ${base}` } : undefined}
-            transition={{ duration: 0.9, delay: delay + index * 0.045, ease: [0.16, 1, 0.3, 1] }}>
-            {letter === ' ' ? ' ' : letter}
-          </motion.span>
+      {/* Letters are grouped per word so a line only ever breaks between words, never inside one. */}
+      {words(text).map(({ word, start }, wordIndex) => (
+        <Fragment key={start}>
+        {wordIndex > 0 && ' '}
+        <span className="kinetic-word" aria-hidden="true">
+          {word.split('').map((letter, offset) => (
+            <span key={offset} className="kinetic-cell">
+              <motion.span data-letter className="kinetic-letter"
+                style={{ fontVariationSettings: `"wdth" ${base}` }}
+                initial={reduced ? false : { y: '105%', fontVariationSettings: '"wdth" 62' }}
+                animate={ready ? { y: '0%', fontVariationSettings: `"wdth" ${base}` } : undefined}
+                transition={{ duration: 0.9, delay: delay + (start + offset) * 0.045, ease: [0.16, 1, 0.3, 1] }}>
+                {letter}
+              </motion.span>
+            </span>
+          ))}
         </span>
+        </Fragment>
       ))}
     </span>
   )

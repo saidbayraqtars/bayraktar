@@ -1,21 +1,22 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useSite } from '@/components/providers'
 import { Icon } from '@/components/icons'
 import { LogoMark, Wordmark } from '@/components/logo'
 import { profile } from '@/lib/content'
+import { PageLink } from '@/components/transition'
 
 /** Fixed header: hides while scrolling down, comes back on the way up. Full-screen menu on small screens. */
-export function Header({ home = true }: { home?: boolean }) {
+export function Header() {
   const { t, theme, toggleLang, toggleTheme } = useSite()
   const { scrollY } = useScroll()
   const [hidden, setHidden] = useState(false)
   const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
-  const prefix = home ? '' : '/'
+  const pathname = usePathname()
 
   useMotionValueEvent(scrollY, 'change', (value) => {
     const previous = scrollY.getPrevious() ?? 0
@@ -32,9 +33,9 @@ export function Header({ home = true }: { home?: boolean }) {
   }, [open])
 
   const links = [
-    { href: `${prefix}#work`, label: t.nav.work },
-    { href: `${prefix}#about`, label: t.nav.about },
-    { href: `${prefix}#contact`, label: t.nav.contact },
+    { href: '/isler', label: t.nav.work },
+    { href: '/hakkimda', label: t.nav.about },
+    { href: '/iletisim', label: t.nav.contact },
   ]
 
   return (
@@ -42,9 +43,9 @@ export function Header({ home = true }: { home?: boolean }) {
       <a href="#main" className="skip-link">{t.skip}</a>
       <motion.header className="header" data-solid={solid || open || undefined}
         animate={{ y: hidden && !open ? '-110%' : '0%' }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}>
-        <Link href="/" className="header-logo" aria-label="Said Bayraktar" onClick={() => setOpen(false)}><Wordmark caption={t.role} /></Link>
+        <PageLink href="/" className="header-logo" aria-label="Said Bayraktar" onClick={() => setOpen(false)}><Wordmark caption={t.role} /></PageLink>
         <nav className="header-nav" aria-label={t.nav.menu}>
-          {links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
+          {links.map((link) => <PageLink key={link.href} href={link.href} aria-current={pathname === link.href ? 'page' : undefined}>{link.label}</PageLink>)}
         </nav>
         <div className="header-tools">
           <button type="button" className="tool" onClick={toggleLang} aria-label={t.language}>{t.langShort}</button>
@@ -62,11 +63,11 @@ export function Header({ home = true }: { home?: boolean }) {
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}>
             <nav className="menu-links">
               {links.map((link, index) => (
-                <motion.a key={link.href} href={link.href} onClick={() => setOpen(false)}
+                <motion.span key={link.href} className="menu-link"
                   initial={{ y: '110%' }} animate={{ y: '0%' }} exit={{ y: '-110%' }}
                   transition={{ duration: 0.6, delay: 0.15 + index * 0.07, ease: [0.16, 1, 0.3, 1] }}>
-                  {link.label}
-                </motion.a>
+                  <PageLink href={link.href} onClick={() => setOpen(false)}>{link.label}</PageLink>
+                </motion.span>
               ))}
             </nav>
             <motion.a className="menu-mail" href={`mailto:${profile.email}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}>{profile.email}</motion.a>

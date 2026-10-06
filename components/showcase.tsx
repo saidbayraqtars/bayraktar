@@ -8,6 +8,8 @@ import { useSite } from '@/components/providers'
 import { Header, Footer } from '@/components/chrome'
 import { Icon } from '@/components/icons'
 import { Kinetic } from '@/components/kinetic'
+import { PageLink } from '@/components/transition'
+import { WhatsAppDemo } from '@/components/demos'
 import { profile } from '@/lib/content'
 import { projectHref, showcaseProjects, type Project } from '@/lib/projects'
 
@@ -19,16 +21,18 @@ export function Showcase({ project }: { project: Project }) {
   const next = showcaseProjects[(index + 1) % showcaseProjects.length]
   return (
     <>
-      <Header home={false} />
+      <Header />
       <main id="main" className="case" style={{ '--c': project.color, '--ci': project.ink } as CSSProperties}>
-        <Link href="/#work" className="text-link case-back"><Icon name="back" />{s.back}</Link>
+        <PageLink href="/isler" className="text-link case-back"><Icon name="back" />{s.back}</PageLink>
         <header className="case-head">
           <p className="meta"><span>{project.kind[lang]}</span><span className="meta-status" data-status={project.status}>{t.status[project.status]}</span></p>
           <h1 className="case-title"><Kinetic text={project.name} base={100} max={125} /></h1>
           <motion.p className="case-pitch" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5 }}>{project.pitch[lang]}</motion.p>
         </header>
         <motion.div className="case-media" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}>
-          {project.image
+          {project.demo === 'whatsapp'
+            ? <WhatsAppDemo lang={lang} />
+            : project.image
             ? <div className="media-shot"><Image src={project.image} alt="" fill sizes="92vw" className="media-img" priority /></div>
             : <div className="media-poster" aria-hidden="true"><span data-text={project.name}>{project.name}</span></div>}
         </motion.div>

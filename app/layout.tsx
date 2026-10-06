@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from 'next'
 import { Archivo } from 'next/font/google'
 import { SiteProvider } from '@/components/providers'
+import { TransitionProvider } from '@/components/transition'
 import { siteUrl } from '@/lib/site'
 import { profile } from '@/lib/content'
 import './globals.css'
+import './demos.css'
 
 // One variable family carries the whole identity: the width axis (62-125) is animated for the kinetic type.
 const archivo = Archivo({ subsets: ['latin', 'latin-ext'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' })
@@ -40,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     knowsAbout: ['Web development', 'ERP integration', 'React', 'Next.js', 'Electron', 'Laravel'] }
   return <html lang="tr" className={archivo.variable} suppressHydrationWarning>
     <head><script dangerouslySetInnerHTML={{ __html: headScript }} /></head>
-    <body><SiteProvider>{children}</SiteProvider>
+    <body><SiteProvider><TransitionProvider>{children}</TransitionProvider></SiteProvider>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
     </body>
   </html>

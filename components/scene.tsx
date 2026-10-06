@@ -4,6 +4,7 @@ import { useRef, useState, type CSSProperties } from 'react'
 import Image from 'next/image'
 import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useScroll, useTransform, type MotionValue } from 'motion/react'
 import { Icon } from '@/components/icons'
+import { ProjectDemo } from '@/components/demos'
 import { displayHost, type Project } from '@/lib/projects'
 import type { Copy, Lang } from '@/lib/content'
 
@@ -76,28 +77,34 @@ export function Scene({ project, t, lang, link }: SceneProps) {
           </div>
         </div>
 
-        <div className="scene-view">
+        <div className="scene-view" data-demo={project.demo}>
           <span className="scene-glow" aria-hidden="true" />
+          {project.demo ? (
+            <motion.div className="stage-demo" style={reduced ? undefined : { rotateX, rotateY, y: winY, scale: winScale, opacity: winOpacity }}>
+              <ProjectDemo kind={project.demo} progress={p} lang={lang} reduced={reduced} />
+            </motion.div>
+          ) : (
           <motion.div className="win" aria-hidden="true"
-            style={reduced ? undefined : { rotateX, rotateY, y: winY, scale: winScale, opacity: winOpacity }}>
-            <div className="win-bar">
-              <i /><i /><i />
-              <span>{project.url ? displayHost(project.url) : project.name}</span>
-            </div>
-            <div className="win-screen">
-              {project.image ? (
-                <>
-                  <Zoom progress={p} reduced={reduced || Boolean(second)} origin={`${tx}% ${ty}%`}>
-                    <Image src={project.image} alt="" fill sizes="(max-width: 900px) 92vw, 56vw" className="win-img" />
-                  </Zoom>
-                  {second && !reduced && <Reveal progress={p} src={second} at={`${tx}% ${ty}%`} />}
-                </>
-              ) : (
-                <div className="media-poster"><span data-text={project.name}>{project.name}</span></div>
-              )}
-              {!reduced && project.image && <Pointer progress={p} x={tx} y={ty} />}
-            </div>
-          </motion.div>
+              style={reduced ? undefined : { rotateX, rotateY, y: winY, scale: winScale, opacity: winOpacity }}>
+              <div className="win-bar">
+                <i /><i /><i />
+                <span>{project.url ? displayHost(project.url) : project.name}</span>
+              </div>
+              <div className="win-screen">
+                {project.image ? (
+                  <>
+                    <Zoom progress={p} reduced={reduced || Boolean(second)} origin={`${tx}% ${ty}%`}>
+                      <Image src={project.image} alt="" fill sizes="(max-width: 900px) 92vw, 56vw" className="win-img" />
+                    </Zoom>
+                    {second && !reduced && <Reveal progress={p} src={second} at={`${tx}% ${ty}%`} />}
+                  </>
+                ) : (
+                  <div className="media-poster"><span data-text={project.name}>{project.name}</span></div>
+                )}
+                {!reduced && project.image && <Pointer progress={p} x={tx} y={ty} />}
+              </div>
+            </motion.div>
+          )}
           {project.stats?.map((fact, index) => (
             <Fact key={fact.en} index={index} progress={p} reduced={reduced} text={fact[lang]} />
           ))}

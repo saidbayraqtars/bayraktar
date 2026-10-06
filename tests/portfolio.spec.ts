@@ -17,7 +17,7 @@ test('projects run from the biggest to the smallest', async ({ page }) => {
   await skipIntro(page)
   await page.goto('/')
   const names = await page.locator('.scene-name, .pan-name, .row-name').allTextContents()
-  expect(names.slice(0, 4)).toEqual(['B2B Sipariş', 'Okka ERP', 'Vega WhatsApp', 'Neva QR'])
+  expect(names.slice(0, 4)).toEqual(['B2B Sipariş', 'Okka ERP', 'SeaWatch', 'Neva QR'])
   expect(names).toHaveLength(19)
   expect(names.at(-1)).toBe('Reklam Paneli')
   const neva = page.locator('.scene').filter({ hasText: 'Neva QR' }).getByRole('link', { name: 'Siteyi aç' })
@@ -33,7 +33,7 @@ test('a project without a website opens its case study page', async ({ page }) =
   await expect(page.getByRole('heading', { level: 1 })).toContainText('B2B Sipariş')
   await expect(page.getByText('Sıradaki iş')).toBeVisible()
   await page.getByRole('link', { name: 'Tüm işler' }).click()
-  await expect(page).toHaveURL(/\/#work$/)
+  await expect(page).toHaveURL(/\/isler$/)
 })
 
 test('scrolling the opening walks through the four layers', async ({ page }) => {
