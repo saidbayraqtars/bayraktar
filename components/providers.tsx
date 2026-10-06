@@ -1,10 +1,10 @@
 'use client'
 
 import { createContext, useContext, useEffect, useSyncExternalStore, type ReactNode } from 'react'
-import { dict, type Dict, type Lang } from '@/lib/content'
+import { copy, type Copy, type Lang } from '@/lib/content'
 
 type Theme = 'light' | 'dark'
-type SiteContextValue = { lang: Lang; setLang: (lang: Lang) => void; toggleLang: () => void; t: Dict; theme: Theme; toggleTheme: () => void }
+type SiteContextValue = { lang: Lang; toggleLang: () => void; t: Copy; theme: Theme; toggleTheme: () => void }
 const SiteContext = createContext<SiteContextValue | null>(null)
 const event = 'sb-preferences'
 const volatile = new Map<string, string>()
@@ -21,17 +21,20 @@ function write(key: string, value: string) {
   try { localStorage.setItem(key, value); volatile.delete(key) } catch { volatile.set(key, value) }
   window.dispatchEvent(new Event(event))
 }
+function systemTheme() {
+  try { return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light' } catch { return 'light' }
+}
 export function SiteProvider({ children }: { children: ReactNode }) {
   const lang = useSyncExternalStore(subscribe, () => read('sb-lang', 'tr') === 'en' ? 'en' : 'tr', () => 'tr') as Lang
-  const theme = useSyncExternalStore(subscribe, () => read('sb-theme', 'dark') === 'light' ? 'light' : 'dark', () => 'dark') as Theme
+  const theme = useSyncExternalStore(subscribe, () => read('sb-theme', systemTheme()) === 'dark' ? 'dark' : 'light', () => 'light') as Theme
   useEffect(() => {
     document.documentElement.lang = lang
     document.documentElement.classList.toggle('dark', theme === 'dark')
     document.documentElement.style.colorScheme = theme
   }, [lang, theme])
-  return <SiteContext.Provider value={{ lang, theme, setLang: (value) => write('sb-lang', value),
+  return <SiteContext.Provider value={{ lang, theme,
     toggleLang: () => write('sb-lang', lang === 'tr' ? 'en' : 'tr'),
-    toggleTheme: () => write('sb-theme', theme === 'light' ? 'dark' : 'light'), t: dict[lang] as Dict }}>
+    toggleTheme: () => write('sb-theme', theme === 'light' ? 'dark' : 'light'), t: copy[lang] as Copy }}>
     {children}
   </SiteContext.Provider>
 }
@@ -40,4 +43,3 @@ export function useSite() {
   if (!context) throw new Error('useSite requires SiteProvider')
   return context
 }
-

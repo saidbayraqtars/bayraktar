@@ -1,13 +1,13 @@
 import type { MetadataRoute } from 'next'
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Said Bayraktar — Full Stack Developer',
+    name: 'Said Bayraktar, full stack geliştirici',
     short_name: 'Said Bayraktar',
-    description: 'Web siteleri, SaaS, ERP entegrasyonları ve masaüstü uygulamaları.',
+    description: 'Ekrandan sunucuya: web, mobil ve masaüstü yazılım.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#111d29',
-    theme_color: '#111d29',
+    background_color: '#0d0f14',
+    theme_color: '#0d0f14',
     lang: 'tr',
     icons: [
       { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },

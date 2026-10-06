@@ -1,6 +1,15 @@
+'use client'
+
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useSite } from '@/components/providers'
+import { LogoMark } from '@/components/logo'
+
 export default function NotFound() {
-  return <main className="not-found"><span>404</span><h1>Bu sayfayı bulamadım.</h1><p>Projelerimi ve iletişim bilgilerimi ana sayfada bulabilirsiniz.</p><Button asChild><Link href="/"><ArrowLeft />Ana sayfaya dön</Link></Button></main>
+  const { t } = useSite()
+  return <main className="not-found">
+    <LogoMark size={72} build />
+    <h1>{t.notFound.title}</h1>
+    <p>{t.notFound.body}</p>
+    <Link href="/" className="btn btn-solid">{t.notFound.back}</Link>
+  </main>
 }
