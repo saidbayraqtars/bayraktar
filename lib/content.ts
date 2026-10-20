@@ -13,7 +13,7 @@ export const profile = {
 }
 
 export const skillGroups = [
-    { tr: 'Diller', en: 'Languages', items: ['JavaScript', 'TypeScript', 'SQL', 'C#', 'Python'] },
+    { tr: 'Diller', en: 'Languages', items: ['JavaScript', 'TypeScript', 'PHP', 'SQL', 'Kotlin', 'C#', 'Python'] },
     { tr: 'Arayüz', en: 'Frontend', items: ['React', 'Next.js', 'React Native (Expo)', 'Tailwind CSS', 'Astro'] },
     { tr: 'Sunucu ve API', en: 'Backend and API', items: ['Node.js', 'Express', 'NestJS', 'Laravel', 'SSE'] },
     { tr: 'Veritabanı', en: 'Databases', items: ['PostgreSQL', 'PostGIS', 'SQL Server', 'Prisma', 'SQLite'] },
@@ -23,18 +23,19 @@ export const skillGroups = [
 
 export const experience = [
     {
-        company: 'Freelance',
-        period: { tr: '10/2026 - Halen', en: '10/2026 - present' },
-        role: { tr: 'Full Stack Developer', en: 'Full Stack Developer' },
+        company: 'Neva Yazılım / Bayraktar Yazılım',
+        period: { tr: '05/2026 - Halen', en: '05/2026 - present' },
+        role: { tr: 'Serbest Yazılım Geliştirici ve Kurucu', en: 'Freelance Software Developer and Founder' },
         current: true,
         bullets: [
-            { tr: 'Web siteleri, iş yazılımları ve masaüstü uygulamaları geliştiriyorum.', en: 'I build websites, business software and desktop applications.' },
+            { tr: 'Kendi ürünlerimi geliştirip işletiyorum: restoranlar için QR menü SaaS’ı Neva QR (nevaqr.com) ve çevrimdışı masaüstü ürün ailesi ArcTeknik.', en: 'I build and run my own products: Neva QR (nevaqr.com), a QR menu SaaS for restaurants, and ArcTeknik, a family of offline desktop products.' },
+            { tr: 'Firmalar için web siteleri, iş yazılımları ve mobil uygulamalar geliştiriyorum; en yenisi bir otomotiv deposu için Android el terminali uygulaması.', en: 'I build websites, business software and mobile apps for companies; the latest is an Android handheld-terminal app for an automotive warehouse.' },
             { tr: 'Expert Bilişim için geliştirdiğim Vega ürünlerine uzaktan destek veriyorum: sürüm yayını, hata düzeltme, kurulum ve müşteri talepleri.', en: 'I give remote support for the Vega products I built for Expert Bilişim: releases, bug fixes, installations and customer requests.' },
         ],
     },
     {
         company: 'Expert Bilişim (Vega Yazılım)',
-        period: { tr: '02/2026 - 10/2026', en: '02/2026 - 10/2026' },
+        period: { tr: '02/2026 - 09/2026', en: '02/2026 - 09/2026' },
         role: { tr: 'Full Stack Developer ve IT Destek', en: 'Full Stack Developer and IT Support' },
         current: false,
         bullets: [
@@ -69,9 +70,9 @@ export const cvFiles = [
 /** Real figures only: each number below comes from a shipped project. */
 export const stats = [
     { value: 19, suffix: '', label: { tr: 'proje yayında ya da sahada', en: 'projects live or in the field' } },
-    { value: 1200, suffix: '+', label: { tr: 'otomatik test, yalnızca B2B Sipariş’te', en: 'automated tests in B2B Sipariş alone' } },
+    { value: 1300, suffix: '+', label: { tr: 'otomatik test, yalnızca B2B Sipariş’te', en: 'automated tests in B2B Sipariş alone' } },
     { value: 200, suffix: '+', label: { tr: 'kurumsal cihaza destek', en: 'corporate devices supported' } },
-    { value: 43, suffix: '', label: { tr: 'menü tasarımı Neva QR’da', en: 'menu designs in Neva QR' } },
+    { value: 44, suffix: '', label: { tr: 'menü tasarımı Neva QR’da', en: 'menu designs in Neva QR' } },
 ]
 
 export const layers = [
@@ -136,7 +137,7 @@ export const copy = {
         about: {
             title: 'Kodu da, işi de anlıyorum.',
             p1: 'Samsun’da yaşayan bir full stack yazılımcıyım: web, mobil ve masaüstü yazılımı arayüzünden veritabanına kadar ben geliştiriyorum. Saha satışında müşteriyle birebir çalışırken şunu öğrendim: iyi yazılım, kullanan kişinin gününü kolaylaştırır.',
-            p2: 'Şubat-Ekim 2026 arasında Expert Bilişim’de yazılım geliştirme ile IT desteği bir arada yürüttüm. Ekim 2026’dan beri freelance çalışıyorum ve orada geliştirdiğim ürünlere uzaktan destek vermeye devam ediyorum. Yazılım geliştirici olarak tam zamanlı, uzaktan ya da proje bazlı yeni bir ekibe katılmaya açığım.',
+            p2: 'Şubat-Eylül 2026 arasında Expert Bilişim’de yazılım geliştirme ile IT desteği bir arada yürüttüm. Mayıs 2026’dan beri kendi ürünlerimi geliştiriyorum, Ekim 2026’dan beri tam zamanlı serbest çalışıyorum ve Expert’te geliştirdiğim ürünlere uzaktan destek vermeye devam ediyorum. Yazılım geliştirici olarak tam zamanlı, uzaktan ya da proje bazlı yeni bir ekibe katılmaya açığım.',
             experience: 'Deneyim',
             education: 'Eğitim',
             facts: ['Samsun, Türkiye', 'Türkçe ve İngilizce', 'Tam zamanlı ve uzaktan işlere açık'],
@@ -195,7 +196,7 @@ export const copy = {
         about: {
             title: 'I understand the work behind the code.',
             p1: 'I’m a full stack developer based in Samsun, Türkiye, building web, mobile and desktop software from the interface down to the database. Selling face to face in the field taught me that good software makes someone’s day easier.',
-            p2: 'From February to October 2026 I combined software development with IT support at Expert Bilişim. Since October 2026 I work freelance and keep giving remote support for the products I built there. I’m open to joining a team as a software developer: full-time, remote or per project.',
+            p2: 'From February to September 2026 I combined software development with IT support at Expert Bilişim. I have been building my own products since May 2026, have worked freelance full time since October 2026, and keep giving remote support for the products I built at Expert. I’m open to joining a team as a software developer: full-time, remote or per project.',
             experience: 'Experience',
             education: 'Education',
             facts: ['Samsun, Türkiye', 'Turkish and English', 'Open to full-time and remote roles'],

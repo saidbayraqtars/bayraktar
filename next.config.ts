@@ -1,24 +1,17 @@
 import type { NextConfig } from 'next'
-import { projects } from './lib/projects'
 
-const securityHeaders = [
-    { key: 'X-Content-Type-Options', value: 'nosniff' },
-    { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-    { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-    { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
-    { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-]
-
+// The site is a static export served by nginx on the Neva VPS (deploy/).
+// Response headers and the old /projects/<slug> redirects live in the nginx
+// config there (deploy/nginx/), since a static export cannot set them.
+// Images: scripts/images.mjs writes WebP widths into out/_img at build time
+// and lib/image-loader.ts points next/image at them.
 const nextConfig: NextConfig = {
-    async headers() {
-        return [{ source: '/:path*', headers: securityHeaders }]
-    },
-    // Old /projects/<slug> pages from the previous design go to the site or the showcase page.
-    async redirects() {
-        return [
-            ...projects.map((project) => ({ source: `/projects/${project.slug}`, destination: project.url ?? `/p/${project.slug}`, permanent: true })),
-            { source: '/projects/:slug', destination: '/', permanent: true },
-        ]
+    output: 'export',
+    images: {
+        loader: 'custom',
+        loaderFile: './lib/image-loader.ts',
+        deviceSizes: [480, 768, 1080, 1440, 1920],
+        imageSizes: [256],
     },
 }
 

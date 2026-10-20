@@ -68,7 +68,7 @@ test('contact offers mail, WhatsApp and resumes', async ({ page }) => {
   await expect(contact.locator('a[href^="https://wa.me/905350786101"]')).toHaveCount(1)
   await expect(contact.locator('a[download]')).toHaveCount(4)
   await expect(page.locator('#about')).toContainText('uzaktan destek')
-  await expect(page.locator('#about')).toContainText('02/2026 - 10/2026')
+  await expect(page.locator('#about')).toContainText('02/2026 - 09/2026')
 })
 
 test('theme and language persist, layouts fit and pass axe', async ({ page }) => {
@@ -107,8 +107,8 @@ test('reduced motion skips the intro', async ({ page }) => {
 
 test('old project URLs redirect', async ({ request }) => {
   const live = await request.get('/projects/neva-qr', { maxRedirects: 0 })
-  expect(live.status()).toBe(308)
+  expect(live.status()).toBe(301)
   expect(live.headers().location).toMatch(/^https:\/\/nevaqr\.com\/?$/)
   const showcase = await request.get('/projects/galya-panel', { maxRedirects: 0 })
-  expect(showcase.headers().location).toBe('/p/galya-panel')
+  expect(showcase.headers().location).toMatch(/\/p\/galya-panel$/)
 })

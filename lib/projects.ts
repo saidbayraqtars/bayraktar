@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     slug: 'b2b-order-system', demo: 'b2b', image: '/work/b2b.png', name: 'B2B Sipariş', rank: 1, status: 'field', color: '#004e72', ink: '#ffffff',
     kind: { tr: 'Web + mobil iş sistemi', en: 'Web + mobile business system' },
-    pitch: { tr: 'Bayi portalı, saha satış uygulaması ve ERP köprüsü. 1.200’den fazla otomatik test.', en: 'Dealer portal, field-sales app and ERP bridge. More than 1,200 automated tests.' },
+    pitch: { tr: 'Bayi portalı, saha satış uygulaması ve ERP köprüsü. 1.300’den fazla otomatik test.', en: 'Dealer portal, field-sales app and ERP bridge. More than 1,300 automated tests.' },
     summary: { tr: 'Toptancılar için bayi portalı, plasiyer mobil uygulaması ve ERP köprüsünden oluşan sipariş sistemi. Sipariş, sevkiyat, tahsilat ve depo stoku aynı yerde; her akış otomatik testlerle korunuyor.', en: 'An ordering system for wholesalers made of a dealer portal, a field-sales mobile app and an ERP bridge. Orders, shipments, collections and warehouse stock live in one place, and every flow is covered by automated tests.' },
     highlights: [
       { tr: 'Bayi ya da plasiyer siparişi telefondan giriyor', en: 'A dealer or sales rep enters the order on a phone' },
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     ],
     stack: ['Next.js', 'TypeScript', 'Expo', 'PostgreSQL', 'Prisma', 'Electron'],
     stats: [
-      { tr: '1.200+ otomatik test', en: '1,200+ automated tests' },
+      { tr: '1.300+ otomatik test', en: '1,300+ automated tests' },
       { tr: '3 uygulama, tek veri', en: '3 apps, one database' },
       { tr: 'ERP köprüsü', en: 'ERP bridge' },
     ],
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     summary: { tr: 'Restoranın kimliğini masaya taşıyan QR menü platformu.', en: 'A QR menu platform that brings a restaurant’s identity to the table.' },
     highlights: [
       { tr: 'Masadaki QR okutulunca menü saniyeler içinde açılıyor', en: 'Scan the QR on the table and the menu opens in seconds' },
-      { tr: 'Her restorana kendi tasarımı: 42 şablon, tek tıkla', en: 'Every restaurant gets its own look: 42 designs, one click' },
+      { tr: 'Her restorana kendi tasarımı: 44 şablon, tek tıkla', en: 'Every restaurant gets its own look: 44 designs, one click' },
       { tr: 'Fiyat panelden değişiyor, masadaki QR hiç değişmiyor', en: 'Prices change in the panel, the QR on the table never does' },
     ],
     stack: ['Laravel', 'PHP', 'Alpine.js', 'SQLite', 'Cloudflare'],
