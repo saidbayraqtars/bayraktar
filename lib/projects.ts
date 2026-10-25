@@ -93,7 +93,7 @@ export const projects: Project[] = [
   {
     slug: 'neva-qr', demo: 'neva', image: '/work/neva.png', name: 'Neva QR', rank: 4, status: 'live', color: '#2b2440', ink: '#f3cf6b', url: 'https://nevaqr.com',
     kind: { tr: 'SaaS · Dijital menü', en: 'SaaS · Digital menus' },
-    pitch: { tr: 'Restoranlar için 42 tasarımlı QR menü platformu. Canlıda.', en: 'A QR menu platform for restaurants with 42 designs. Live.' },
+    pitch: { tr: 'Restoranlar için 44 tasarımlı QR menü platformu. Canlıda.', en: 'A QR menu platform for restaurants with 44 designs. Live.' },
     summary: { tr: 'Restoranın kimliğini masaya taşıyan QR menü platformu.', en: 'A QR menu platform that brings a restaurant’s identity to the table.' },
     highlights: [
       { tr: 'Masadaki QR okutulunca menü saniyeler içinde açılıyor', en: 'Scan the QR on the table and the menu opens in seconds' },
@@ -103,7 +103,7 @@ export const projects: Project[] = [
     stack: ['Laravel', 'PHP', 'Alpine.js', 'SQLite', 'Cloudflare'],
     shots: ['/work/neva-menu.png'],
     stats: [
-      { tr: '42 menü tasarımı', en: '42 menu designs' },
+      { tr: '44 menü tasarımı', en: '44 menu designs' },
       { tr: '11 dilde menü', en: 'Menus in 11 languages' },
       { tr: 'Canlıda', en: 'Live' },
     ],

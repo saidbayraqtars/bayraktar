@@ -53,10 +53,19 @@ export const experience = [
             { tr: 'Ayda ortalama 30 yeni abonelik sattım; müşteriyle birebir çalışmayı burada öğrendim.', en: 'Averaged 30 new subscriptions a month and learned to work directly with customers.' },
         ],
     },
+    {
+        company: 'Poelsan Plastik Sanayi A.Ş.',
+        period: { tr: '2024 (45 gün)', en: '2024 (45 days)' },
+        role: { tr: 'IT Destek Stajyeri', en: 'IT Support Specialist Intern' },
+        current: false,
+        bullets: [
+            { tr: 'Birinci sınıfın sonunda 45 günlük stajımı IT biriminde yaptım; kullanıcı bilgisayarı, yazıcı ve ağ sorunlarında destek verdim.', en: 'Completed a 45-day internship in the IT department at the end of my first year, supporting users with computer, printer and network problems.' },
+        ],
+    },
 ]
 
 export const education = [
-    { school: { tr: 'Osmangazi Üniversitesi', en: 'Osmangazi University' }, degree: { tr: 'Bilgisayar Programcılığı (önlisans, kayıt donduruldu)', en: 'Computer Programming (associate degree, on leave)' }, period: '2023 - 2025' },
+    { school: { tr: 'Osmangazi Üniversitesi', en: 'Osmangazi University' }, degree: { tr: 'Bilgisayar Programcılığı (önlisans, mezun)', en: 'Computer Programming (associate degree, graduated)' }, period: '2023 - 2025' },
     { school: { tr: 'Mesleki ve Teknik Anadolu Lisesi', en: 'Vocational and Technical High School' }, degree: { tr: 'Tıbbi Cihaz Teknolojileri', en: 'Medical Device Technologies' }, period: '2018 - 2023' },
 ]
 
